@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Digital infrastructure for agricultural entrepreneurship, innovation and connected ecosystem development. FARMCLUB OS launches soon.">
+<meta name="theme-color" content="#064b34">
+<title>FARMCLUB OS | Coming soon</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M31 55V24' stroke='%23064b34' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M30 34C18 35 12 26 13 14c12 1 19 7 17 20Z' fill='%230b6b48'/%3E%3Cpath d='M34 42c9 0 15-6 16-16-10 0-16 6-16 16Z' fill='%23d89a16'/%3E%3Ccircle cx='32' cy='10' r='5' fill='%23d89a16'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--green:#064b34;--green-2:#0b6b48;--gold:#d89a16;--ink:#173126;--muted:#66766f;--bg:#f7faf8;--line:#dbe6df}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px;line-height:1.6}
+.wrap{width:100%;max-width:560px;text-align:center}
+.brand{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:36px}
+.brand span{font-weight:900;font-size:16px;letter-spacing:-.01em}
+.brand span b{color:var(--gold);font-weight:900}
+.eyebrow{color:var(--gold);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:12px;margin:18px 0 16px}
+h1{font-weight:900;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.15;letter-spacing:-.02em;margin:0 0 16px}
+.lead{color:var(--muted);font-size:15px;max-width:420px;margin:0 auto 8px}
+.note{color:var(--muted);font-size:13px;font-style:italic;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-weight:700;font-size:14px;padding:13px 24px;border-radius:10px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+svg.mark{display:block;margin:0 auto 14px}
+.stem{stroke-dasharray:31;stroke-dashoffset:31;animation:grow .9s ease forwards}
+.leafl{opacity:0;transform:scale(.4);transform-origin:13px 24px;animation:pop .5s ease forwards .7s}
+.leafr{opacity:0;transform:scale(.4);transform-origin:50px 26px;animation:pop .5s ease forwards .95s}
+.roots{opacity:0;animation:pop .6s ease forwards 1.2s}
+.ring{opacity:0;transform:scale(.4);transform-origin:32px 10px;animation:pop .5s ease forwards 1.5s}
+.bud{transform-origin:32px 10px;animation:pulse 2.4s ease-in-out infinite 1.9s}
+@keyframes grow{to{stroke-dashoffset:0}}
+@keyframes pop{to{opacity:1;transform:scale(1)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@media(prefers-reduced-motion:reduce){.stem,.leafl,.leafr,.roots,.ring,.bud{animation:none;opacity:1;stroke-dashoffset:0;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M31 55V24" stroke="#064b34" stroke-width="5" stroke-linecap="round"/><path d="M30 34C18 35 12 26 13 14c12 1 19 7 17 20Z" fill="#0b6b48"/><path d="M34 42c9 0 15-6 16-16-10 0-16 6-16 16Z" fill="#d89a16"/><circle cx="32" cy="10" r="5" fill="#d89a16"/></svg>
+    <span>FARMCLUB <b>OS</b></span>
+  </div>
+  <svg class="mark" width="130" height="130" viewBox="0 0 64 64" role="img" aria-label="FARMCLUB OS sprout mark, growing">
+    <path class="roots" d="M25 55c-6-7-12-9-18-8 5 7 10 10 18 8Zm14 0c6-7 12-9 18-8-5 7-10 10-18 8Z" fill="#0b6b48"/>
+    <path class="stem" d="M31 55V24" stroke="#064b34" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path class="leafl" d="M30 34C18 35 12 26 13 14c12 1 19 7 17 20Z" fill="#0b6b48"/>
+    <path class="leafr" d="M34 42c9 0 15-6 16-16-10 0-16 6-16 16Z" fill="#d89a16"/>
+    <path class="ring" d="M32 3c-4 4-7 8-7 12 0 4 3 7 7 7s7-3 7-7c0-4-3-8-7-12Z" fill="none" stroke="#d89a16" stroke-width="3"/>
+    <circle class="bud" cx="32" cy="10" r="5" fill="#d89a16"/>
+  </svg>
+  <div class="eyebrow">Connect &middot; Empower &middot; Grow</div>
+  <h1>Something new is<br>taking root.</h1>
+  <p class="lead">Digital infrastructure for agricultural entrepreneurship, innovation and connected ecosystem development.</p>
+  <p class="note">FARMCLUB OS is under construction &mdash; full platform launching soon.</p>
+  <a class="btn" href="mailto:hello@farmclubos.com">Get in touch &rarr;</a>
+  <footer>&copy; 2026 FarmClub OS. All rights reserved.</footer>
+</div>
+</body>
+</html>
