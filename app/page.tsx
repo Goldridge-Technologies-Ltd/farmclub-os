@@ -1,25 +1,47 @@
-import { ButtonLink } from "@/components/ui/ButtonLink";
+import type { Metadata } from "next";
+import { CapabilityStrip } from "@/components/home/CapabilityStrip";
+import { EntrepreneurJourney } from "@/components/home/EntrepreneurJourney";
+import { FinalCta } from "@/components/home/FinalCta";
+import { HeroSection } from "@/components/home/HeroSection";
+import { HubsSection } from "@/components/home/HubsSection";
+import { KnowledgePreview } from "@/components/home/KnowledgePreview";
+import { PlatformEcosystem } from "@/components/home/PlatformEcosystem";
+import { homePageContent } from "@/content/pages/home";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Agricultural Entrepreneurship & Innovation",
+  description:
+    "FARMCLUB OS connects learning, enterprise development, innovation and markets through one integrated platform.",
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "FARMCLUB OS",
+  description:
+    "FARMCLUB OS connects learning, enterprise development, innovation and markets through one integrated platform.",
+  url: "https://farmclub-os.com/",
+  publisher: {
+    "@type": "Organization",
+    name: "FARMCLUB OS",
+    logo: "https://farmclub-os.com/brand/primary-logo-horizontal.svg",
+  },
+};
+
+export default function HomePage() {
   return (
-    <section className="bg-farm-cream-50 py-20 sm:py-28">
-      <div className="site-container max-w-3xl">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-farm-green-700">
-          CONNECT · EMPOWER · GROW
-        </p>
-        <h1 className="text-4xl font-semibold tracking-normal text-farm-green-950 sm:text-6xl">
-          FARMCLUB OS
-        </h1>
-        <p className="mt-6 text-lg leading-8 text-farm-muted">
-          Frontend foundation for the public FARMCLUB OS website.
-        </p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <ButtonLink href="/design-system">View Design System</ButtonLink>
-          <ButtonLink href="/contact" variant="secondary">
-            Contact
-          </ButtonLink>
-        </div>
-      </div>
-    </section>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <HeroSection content={homePageContent.hero} />
+      <CapabilityStrip capabilities={homePageContent.capabilityStrip} />
+      <PlatformEcosystem content={homePageContent.platform} />
+      <EntrepreneurJourney content={homePageContent.journey} />
+      <HubsSection content={homePageContent.hubs} />
+      <KnowledgePreview content={homePageContent.knowledge} />
+      <FinalCta content={homePageContent.finalCta} />
+    </>
   );
 }
