@@ -1,6 +1,8 @@
-import Image from "next/image";
 import type { HomePageContent } from "@/content/pages/home";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { FeatureCard } from "@/components/ui/FeatureCard";
+import { MediaFrame } from "@/components/ui/MediaFrame";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 
 type HubsSectionProps = {
   content: HomePageContent["hubs"];
@@ -8,49 +10,42 @@ type HubsSectionProps = {
 
 export function HubsSection({ content }: HubsSectionProps) {
   return (
-    <section className="bg-farm-green-950 py-20 text-white sm:py-28">
-      <div className="site-container grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-farm-gold-400">
-            {content.eyebrow}
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-normal sm:text-4xl lg:text-5xl">
-            {content.heading}
-          </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-white/78">
-            {content.statement}
-          </p>
-          <div className="mt-9 grid gap-4 sm:grid-cols-3">
-            {content.capabilities.map((capability) => (
-              <article
-                key={capability.title}
-                className="rounded-lg border border-white/14 bg-white/7 p-5"
-              >
-                <h3 className="text-lg font-semibold text-farm-gold-400">
-                  {capability.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-white/76">
-                  {capability.description}
-                </p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-9">
-            <ButtonLink href={content.action.href} variant="secondary">
-              {content.action.label}
-            </ButtonLink>
+    <section className="section-padding bg-farm-green-950 text-white">
+      <div className="site-container">
+        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <MediaFrame
+            image={content.image}
+            aspect="aspect-[4/3]"
+            objectPosition="object-center"
+          />
+          <div>
+            <SectionLabel tone="dark">{content.eyebrow}</SectionLabel>
+            <h2 className="mt-4 text-3xl font-semibold tracking-normal sm:text-4xl lg:text-5xl">
+              {content.heading}
+            </h2>
+            <p className="mt-5 max-w-2xl text-xl font-semibold leading-8 text-white">
+              {content.statement}
+            </p>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-white/76">
+              {content.description}
+            </p>
+            <div className="mt-8">
+              <ButtonLink href={content.action.href} variant="gold">
+                {content.action.label}
+              </ButtonLink>
+            </div>
           </div>
         </div>
-
-        <div className="relative aspect-[4/5] min-h-[420px] overflow-hidden rounded-lg bg-farm-green-900">
-          <Image
-            src={content.image.src}
-            alt={content.image.alt}
-            fill
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-farm-green-950/55 via-transparent to-transparent" />
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {content.capabilities.map((capability) => (
+            <FeatureCard
+              key={capability.title}
+              title={capability.title}
+              description={capability.description}
+              badge={capability.badge}
+              tone="dark"
+            />
+          ))}
         </div>
       </div>
     </section>

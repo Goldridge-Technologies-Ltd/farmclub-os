@@ -5,6 +5,7 @@
   --color-green-900: #0b3d2e;
   --color-green-800: #145a3a;
   --color-green-700: #1f7a4d;
+  --color-green-100: #eaf4ed;
   --color-gold-500: #d8a33a;
   --color-gold-400: #f2c14e;
   --color-cream-100: #f8f6ee;
@@ -12,7 +13,11 @@
   --color-charcoal: #16251f;
   --color-muted: #66736d;
   --color-border: #dfe7df;
+  --radius-card: 8px;
+  --radius-panel: 8px;
+  --shadow-panel: 0 22px 70px rgb(8 47 37 / 10%);
   --shadow-soft: 0 18px 50px rgb(8 47 37 / 8%);
+  --transition-base: 180ms ease;
 }
 
 @theme inline {
@@ -21,6 +26,7 @@
   --color-farm-green-900: var(--color-green-900);
   --color-farm-green-800: var(--color-green-800);
   --color-farm-green-700: var(--color-green-700);
+  --color-farm-green-100: var(--color-green-100);
   --color-farm-gold-500: var(--color-gold-500);
   --color-farm-gold-400: var(--color-gold-400);
   --color-farm-cream-100: var(--color-cream-100);
@@ -72,8 +78,63 @@ svg {
   margin-inline: auto;
 }
 
+.content-narrow {
+  max-width: 720px;
+}
+
+.content-wide {
+  max-width: 960px;
+}
+
+.section-padding {
+  padding-block: clamp(4.5rem, 8vw, 7rem);
+}
+
+.section-padding-tight {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.media-frame {
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  background: var(--color-green-900);
+  box-shadow: var(--shadow-panel);
+}
+
+.surface-panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.dark-panel {
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: var(--radius-panel);
+  background: rgb(255 255 255 / 7%);
+}
+
+.button-text-light {
+  color: #ffffff;
+}
+
+.button-text-dark {
+  color: var(--color-green-950);
+}
+
 @media (min-width: 768px) {
   .site-container {
     width: min(100% - 4rem, 1180px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

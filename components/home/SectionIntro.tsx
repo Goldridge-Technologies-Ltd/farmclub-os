@@ -1,3 +1,5 @@
+import { SectionLabel } from "@/components/ui/SectionLabel";
+
 type SectionIntroProps = {
   eyebrow: string;
   heading: string;
@@ -18,14 +20,7 @@ export function SectionIntro({
 
   return (
     <div className={isCenter ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <p
-        className={[
-          "text-sm font-semibold uppercase tracking-[0.18em]",
-          isDark ? "text-farm-gold-400" : "text-farm-green-700",
-        ].join(" ")}
-      >
-        {eyebrow}
-      </p>
+      <SectionLabel tone={isDark ? "dark" : "light"}>{eyebrow}</SectionLabel>
       <h2
         className={[
           "mt-4 text-3xl font-semibold tracking-normal sm:text-4xl lg:text-5xl",

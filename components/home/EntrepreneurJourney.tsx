@@ -7,7 +7,7 @@ type EntrepreneurJourneyProps = {
 
 export function EntrepreneurJourney({ content }: EntrepreneurJourneyProps) {
   return (
-    <section className="bg-farm-cream-100 py-20 sm:py-28">
+    <section className="section-padding bg-farm-cream-100">
       <div className="site-container">
         <SectionIntro
           eyebrow={content.eyebrow}
@@ -19,10 +19,10 @@ export function EntrepreneurJourney({ content }: EntrepreneurJourneyProps) {
           {content.steps.map((step, index) => (
             <li
               key={step.title}
-              className="rounded-lg border border-farm-border bg-white p-5 shadow-[var(--shadow-soft)]"
+              className="relative rounded-lg border border-farm-border bg-white p-5 shadow-[var(--shadow-soft)]"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-farm-gold-400 text-sm font-semibold text-farm-green-950">
-                {index + 1}
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-farm-green-900 text-sm font-semibold text-farm-gold-400">
+                {step.badge ?? String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-5 text-xl font-semibold text-farm-green-950">
                 {step.title}
