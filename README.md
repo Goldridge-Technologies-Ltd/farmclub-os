@@ -1,6 +1,6 @@
 # FARMCLUB OS
 
-Official public website foundation for FARMCLUB OS.
+Official public website foundation for FARMCLUB OS. 
 
 ## Stack
 
