@@ -4,11 +4,7 @@ import { siteNavigation } from "@/lib/navigation";
 const siteUrl = "https://farmclub-os.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
-    ...siteNavigation.map((item) => item.href),
-    "/privacy-policy",
-    "/terms-of-service",
-  ];
+  const routes = siteNavigation.map((item) => item.href);
 
   return routes.map((route) => ({
     url: new URL(route, siteUrl).toString(),

@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { primaryNavigationAction, siteNavigation } from "@/lib/navigation";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="lg:hidden">
@@ -36,8 +38,14 @@ export function MobileNavigation() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    aria-current={pathname === item.href ? "page" : undefined}
                     onClick={() => setIsOpen(false)}
-                    className="block rounded-md px-3 py-3 text-base font-semibold text-farm-charcoal hover:bg-farm-cream-100"
+                    className={[
+                      "block rounded-md border-l-4 px-3 py-3 text-base font-semibold",
+                      pathname === item.href
+                        ? "border-farm-gold-500 bg-farm-green-100 text-farm-green-950"
+                        : "border-transparent text-farm-charcoal hover:bg-farm-cream-100",
+                    ].join(" ")}
                   >
                     {item.label}
                   </Link>
