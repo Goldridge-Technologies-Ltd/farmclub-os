@@ -10,32 +10,31 @@ export type ContactPageContent = {
 
 export const contactPageContent: ContactPageContent = {
   hero: {
-    eyebrow: "Contact FARMCLUB OS",
-    heading: "Start with the right conversation.",
-    description: "Tell us what you are exploring so your enquiry can follow the most relevant FARMCLUB OS pathway when online delivery is connected.",
+    eyebrow: "Contact Us",
+    heading: "Let's Build the Future of Agriculture Together.",
+    description: "Whether you are an entrepreneur, partner, investor or institution, we would love to hear from you.",
     image: { src: "/images/contact/contact-hero-partnership-meeting.png", alt: "Agricultural and institutional collaborators in a focused meeting." },
   },
   introduction: {
-    eyebrow: "Enquiries",
-    heading: "Clear context helps create a useful next step.",
-    description: "Use the enquiry categories below to frame your interest. The current website validates and reviews your message locally but does not yet transmit or store it.",
+    eyebrow: "Send us a message",
+    heading: "Start the right conversation.",
+    description: "Choose the enquiry type that best matches how you would like to connect with FARMCLUB OS.",
   },
-  enquiryTypes: ["General enquiry", "Partnership enquiry", "Platform support", "Investor enquiry", "Media enquiry"],
+  enquiryTypes: ["Partnership & Collaboration", "Platform Enquiries & Support", "Investment", "Media & Press"],
   pathways: {
-    eyebrow: "Conversation pathways",
+    eyebrow: "How can we help?",
     heading: "Choose the closest fit.",
     items: [
-      { title: "General enquiry", description: "Questions about FARMCLUB OS and its public platform model.", badge: "GE" },
-      { title: "Partnership enquiry", description: "Responsible institutional, technical or ecosystem collaboration.", badge: "PE" },
-      { title: "Platform support", description: "Questions about the public website or platform access as capabilities develop.", badge: "PS" },
-      { title: "Investor enquiry", description: "Requests for approved investor or institutional information.", badge: "IE" },
-      { title: "Media enquiry", description: "Requests for approved public information and comment.", badge: "ME" },
+      { title: "Partnership & Collaboration", description: "Work with FARMCLUB OS to empower entrepreneurs, strengthen communities and build sustainable impact.", badge: "PC" },
+      { title: "Platform Enquiries & Support", description: "Ask a question about the FARMCLUB OS platform and how it works.", badge: "PS" },
+      { title: "Investment", description: "Request approved investor information and connect with the team.", badge: "IN" },
+      { title: "Media & Press", description: "Request approved public information, interviews or media materials.", badge: "MP" },
     ],
   },
   form: {
-    heading: "Prepare your enquiry",
-    description: "Complete the fields to validate and review your message. Nothing will be sent or stored by this interim form.",
-    privacyNote: "Do not include confidential, financial, identity or other sensitive information. Future online submission will require an approved privacy notice and delivery integration.",
-    integrationNote: "Online delivery is not connected yet. Successful review means only that the message is complete on this device.",
+    heading: "Send Us a Message",
+    description: "Complete the fields below to prepare your enquiry for FARMCLUB OS.",
+    privacyNote: "Do not include confidential, financial, identity or other sensitive information in this interim form.",
+    integrationNote: "Online delivery is not connected yet. Reviewing the form only checks that your message is complete on this device.",
   },
 };
