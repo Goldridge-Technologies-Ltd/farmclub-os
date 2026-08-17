@@ -1,5 +1,6 @@
 import type { HomePageContent } from "@/content/pages/home";
-import { SectionIntro } from "@/components/home/SectionIntro";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { StepJourney } from "@/components/ui/StepJourney";
 
 type EntrepreneurJourneyProps = {
   content: HomePageContent["journey"];
@@ -7,32 +8,19 @@ type EntrepreneurJourneyProps = {
 
 export function EntrepreneurJourney({ content }: EntrepreneurJourneyProps) {
   return (
-    <section className="section-padding bg-farm-cream-100">
+    <section id="how-it-works" className="scroll-mt-24 bg-white pb-6">
       <div className="site-container">
-        <SectionIntro
-          eyebrow={content.eyebrow}
-          heading={content.heading}
-          description={content.description}
-          align="center"
-        />
-        <ol className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-6">
-          {content.steps.map((step, index) => (
-            <li
-              key={step.title}
-              className="relative rounded-lg border border-farm-border bg-white p-5 shadow-[var(--shadow-soft)]"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-farm-green-900 text-sm font-semibold text-farm-gold-400">
-                {step.badge ?? String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-5 text-xl font-semibold text-farm-green-950">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-farm-muted">
-                {step.description}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <div className="rounded-band bg-farm-cream-50 px-5 py-12 sm:px-10 sm:py-14">
+          <div className="text-center">
+            <SectionLabel className="text-center">
+              {content.eyebrow}
+            </SectionLabel>
+            <h2 className="mt-3 text-[1.7rem] text-farm-green-950 sm:text-[2.1rem]">
+              {content.heading}
+            </h2>
+          </div>
+          <StepJourney steps={content.steps} className="mt-10" />
+        </div>
       </div>
     </section>
   );

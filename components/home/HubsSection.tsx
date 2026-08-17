@@ -1,51 +1,83 @@
+import Image from "next/image";
 import type { HomePageContent } from "@/content/pages/home";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { FeatureCard } from "@/components/ui/FeatureCard";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { Icon } from "@/components/ui/Icon";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
 type HubsSectionProps = {
   content: HomePageContent["hubs"];
 };
 
+/*
+  The reference artwork shows a carousel of named hub locations here. Hub
+  locations are not confirmed for publication (see AGENTS.md), so the same
+  composition presents the Hub as a platform-wide capability instead.
+*/
 export function HubsSection({ content }: HubsSectionProps) {
   return (
-    <section className="section-padding bg-farm-green-950 text-white">
+    <section className="bg-white py-6">
       <div className="site-container">
-        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-          <MediaFrame
-            image={content.image}
-            aspect="aspect-[4/3]"
-            objectPosition="object-center"
-          />
-          <div>
+        <div className="grid gap-10 rounded-band bg-farm-green-950 px-6 py-12 text-white sm:px-10 sm:py-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
+          <div className="max-w-sm">
             <SectionLabel tone="dark">{content.eyebrow}</SectionLabel>
-            <h2 className="mt-4 text-3xl font-semibold tracking-normal sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-[1.8rem] leading-[1.15] sm:text-[2.15rem]">
               {content.heading}
             </h2>
-            <p className="mt-5 max-w-2xl text-xl font-semibold leading-8 text-white">
-              {content.statement}
-            </p>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-white/76">
+            <p className="mt-5 text-[0.95rem] leading-7 text-white/72">
               {content.description}
             </p>
-            <div className="mt-8">
-              <ButtonLink href={content.action.href} variant="gold">
-                {content.action.label}
-              </ButtonLink>
-            </div>
+            <ButtonLink
+              href={content.action.href}
+              variant="primary"
+              size="lg"
+              className="mt-8 bg-farm-green-700 hover:bg-farm-green-600"
+            >
+              {content.action.label}
+            </ButtonLink>
           </div>
-        </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {content.capabilities.map((capability) => (
-            <FeatureCard
-              key={capability.title}
-              title={capability.title}
-              description={capability.description}
-              badge={capability.badge}
-              tone="dark"
-            />
-          ))}
+
+          <div className="grid gap-8 sm:grid-cols-[1.15fr_0.85fr] sm:items-center">
+            <figure className="relative aspect-[4/3.1] overflow-hidden rounded-card">
+              <Image
+                src={content.image.src}
+                alt={content.image.alt}
+                fill
+                sizes="(min-width: 1024px) 34vw, 100vw"
+                className="object-cover"
+              />
+              <figcaption className="absolute bottom-3 left-3 max-w-[78%] rounded-card bg-farm-green-950/92 p-3.5 backdrop-blur-sm">
+                <p className="text-[0.78rem] font-semibold text-white">
+                  {content.imageCaption.title}
+                </p>
+                <p className="mt-1 text-[0.7rem] leading-4 text-white/70">
+                  {content.imageCaption.description}
+                </p>
+                <ButtonLink
+                  href={content.imageCaption.action.href}
+                  variant="text-gold"
+                  className="mt-2 text-xs"
+                >
+                  {content.imageCaption.action.label}
+                </ButtonLink>
+              </figcaption>
+            </figure>
+
+            <ul className="grid gap-3.5">
+              {content.capabilities.map((capability) => (
+                <li key={capability.title} className="flex gap-3.5">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-farm-gold-400/45 text-farm-gold-400">
+                    <Icon name={capability.icon} size={19} />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold">{capability.title}</p>
+                    <p className="mt-0.5 text-xs leading-5 text-white/62">
+                      {capability.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

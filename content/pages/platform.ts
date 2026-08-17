@@ -1,12 +1,17 @@
-import type { HomeAction, ImageAsset, LabelledItem, NamedItem } from "@/content/pages/home";
+import type { HomeAction, IconItem, ImageAsset } from "@/content/pages/home";
+
+export type PlatformModule = IconItem & {
+  label: string;
+  badge: string;
+  supports: string[];
+};
 
 export type PlatformPageContent = {
   hero: { eyebrow: string; heading: string; description: string; image: ImageAsset; primaryAction: HomeAction; secondaryAction: HomeAction };
-  concept: { eyebrow: string; heading: string; description: string; principles: string[] };
-  architecture: { eyebrow: string; heading: string; description: string; core: NamedItem; engines: (LabelledItem & { supports: string[] })[] };
-  capabilityMap: { eyebrow: string; heading: string; items: LabelledItem[] };
-  journey: { eyebrow: string; heading: string; description: string; steps: LabelledItem[] };
-  useCases: { eyebrow: string; heading: string; items: LabelledItem[] };
+  capabilityMap: { eyebrow: string; heading: string; items: IconItem[] };
+  journey: { eyebrow: string; heading: string; description: string; action: HomeAction; steps: IconItem[] };
+  architecture: { eyebrow: string; heading: string; description: string; modules: PlatformModule[] };
+  useCases: { eyebrow: string; heading: string; items: IconItem[] };
   physicalBridge: { eyebrow: string; heading: string; description: string; image: ImageAsset; flow: string[] };
   cta: { eyebrow: string; heading: string; description: string; primaryAction: HomeAction; secondaryAction: HomeAction };
 };
@@ -17,64 +22,58 @@ export const platformPageContent: PlatformPageContent = {
     heading: "One Platform. Complete Ecosystem.",
     description: "FARMCLUB OS brings every part of the agri-entrepreneur journey together — learning, enterprise development, innovation, financing and market access — on one seamless digital platform.",
     image: { src: "/images/platform/platform-hero-digital-operations.png", alt: "Agricultural professionals using digital tools to coordinate operations." },
-    primaryAction: { label: "Explore the Platform", href: "#four-engines" },
-    secondaryAction: { label: "Watch Overview", href: "#four-engines" },
-  },
-  concept: {
-    eyebrow: "How it works",
-    heading: "Your Platform. Your Journey.",
-    description: "FARMCLUB OS is designed to take you from where you are to where you want to be.",
-    principles: ["Learn through courses, training and expert knowledge", "Build your skills and enterprise", "Innovate with ideas, research and technology", "Connect to buyers, suppliers and new markets"],
-  },
-  architecture: {
-    eyebrow: "Platform modules",
-    heading: "Everything You Need. All in One Place.",
-    description: "Learning, enterprise tools, innovation, finance, networks and impact support work together in one platform ecosystem.",
-    core: { title: "FARMCLUB OS", description: "One connected digital platform for the complete agri-entrepreneur journey." },
-    engines: [
-      { label: "Learn", title: "Learning & Development", description: "Interactive courses, live training and practical resources.", badge: "01", supports: ["Courses", "Training", "Expert knowledge"] },
-      { label: "Build", title: "Enterprise Management", description: "Business planning, mentorship and enterprise support.", badge: "02", supports: ["Business tools", "Mentorship", "Enterprise support"] },
-      { label: "Innovate", title: "Innovation & Research", description: "Ideas, prototypes, research and agricultural technology.", badge: "03", supports: ["Research", "Prototypes", "Technology"] },
-      { label: "Finance", title: "Finance & Market Access", description: "Finance pathways, buyers, suppliers and market opportunities.", badge: "04", supports: ["Finance readiness", "Buyers", "Markets"] },
-      { label: "Connect", title: "Community & Network", description: "Entrepreneurs, experts, partners and institutions in one ecosystem.", badge: "05", supports: ["Community", "Experts", "Partners"] },
-      { label: "Impact", title: "Impact & Analytics", description: "Tools for understanding progress, outcomes and contribution.", badge: "06", supports: ["Progress", "Outcomes", "Insight"] },
-    ],
+    primaryAction: { label: "Explore the Platform", href: "#modules" },
+    secondaryAction: { label: "See How It Works", href: "#how-it-works" },
   },
   capabilityMap: {
     eyebrow: "A complete ecosystem",
     heading: "Learn. Build. Innovate. Connect. Grow.",
     items: [
-      { title: "Learn", description: "Access courses, training and expert knowledge.", badge: "01" },
-      { title: "Build", description: "Develop your skills, ideas and enterprise.", badge: "02" },
-      { title: "Innovate", description: "Create and test solutions with research and technology.", badge: "03" },
-      { title: "Connect", description: "Join networks of entrepreneurs, experts and partners.", badge: "04" },
-      { title: "Market", description: "Connect to buyers, suppliers and market opportunities.", badge: "05" },
-      { title: "Grow", description: "Access mentorship, business support and practical resources.", badge: "06" },
+      { title: "Learn", description: "Access courses, training and expert resources.", icon: "learn" },
+      { title: "Build", description: "Develop your business with tools, mentorship and guidance.", icon: "build" },
+      { title: "Innovate", description: "Create and test solutions with technology and research support.", icon: "research" },
+      { title: "Market", description: "Connect to buyers, suppliers and new market opportunities.", icon: "market" },
+      { title: "Finance", description: "Access funding, grants and investment opportunities.", icon: "finance" },
+      { title: "Connect", description: "Join a community of entrepreneurs, institutions and partners.", icon: "connect" },
     ],
   },
   journey: {
     eyebrow: "How it works",
     heading: "Your Platform. Your Journey.",
-    description: "Six simple steps connect participation, learning, enterprise development and opportunity.",
+    description: "FARMCLUB OS is designed to guide you from where you are to where you want to be. Six simple steps. Endless possibilities.",
+    action: { label: "Start Your Journey", href: "/contact" },
     steps: [
-      { title: "Join", description: "Create your profile and tell us about your goals.", badge: "01" },
-      { title: "Learn", description: "Access courses, training and resources.", badge: "02" },
-      { title: "Build", description: "Develop your skills, test ideas and build your enterprise.", badge: "03" },
-      { title: "Connect", description: "Join networks and connect with experts, partners and opportunities.", badge: "04" },
-      { title: "Market", description: "Connect to markets, buyers and suppliers.", badge: "05" },
-      { title: "Grow", description: "Receive mentorship, business support and resources.", badge: "06" },
+      { title: "Join", description: "Create your profile and tell us about your goals.", icon: "join" },
+      { title: "Learn", description: "Access courses, tools and resources.", icon: "book" },
+      { title: "Build", description: "Develop your skills, validate ideas and build your enterprise.", icon: "build" },
+      { title: "Connect", description: "Join networks and connect with experts and partners.", icon: "connect" },
+      { title: "Market", description: "Connect to markets, buyers and expand your reach.", icon: "market" },
+      { title: "Grow", description: "Receive mentorship, business support and resources.", icon: "grow" },
+    ],
+  },
+  architecture: {
+    eyebrow: "Platform modules",
+    heading: "Everything You Need. All in One Place.",
+    description: "Learning, enterprise tools, innovation, finance, networks and impact support work together in one platform ecosystem.",
+    modules: [
+      { label: "Learn", title: "Learning & Development", description: "Interactive courses, live training and practical resources.", badge: "01", icon: "learn", supports: ["Courses", "Training", "Expert knowledge"] },
+      { label: "Build", title: "Enterprise Management", description: "Business planning, mentorship and enterprise support.", badge: "02", icon: "enterprise", supports: ["Business tools", "Mentorship", "Enterprise support"] },
+      { label: "Innovate", title: "Innovation & Research", description: "Ideas, prototypes, research and agricultural technology.", badge: "03", icon: "research", supports: ["Research", "Prototypes", "Technology"] },
+      { label: "Finance", title: "Finance & Market Access", description: "Finance pathways, buyers, suppliers and market opportunities.", badge: "04", icon: "finance", supports: ["Finance readiness", "Buyers", "Markets"] },
+      { label: "Connect", title: "Community & Network", description: "Entrepreneurs, experts, partners and institutions in one ecosystem.", badge: "05", icon: "connect", supports: ["Community", "Experts", "Partners"] },
+      { label: "Impact", title: "Impact & Analytics", description: "Tools for understanding progress, outcomes and contribution.", badge: "06", icon: "impact", supports: ["Progress", "Outcomes", "Insight"] },
     ],
   },
   useCases: {
-    eyebrow: "For every agri-entrepreneur",
+    eyebrow: "Built for every agri-entrepreneur",
     heading: "Who We Serve",
     items: [
-      { label: "Entrepreneurs", title: "Aspiring Entrepreneurs", description: "Get the knowledge and support needed to start.", badge: "AE" },
-      { label: "Businesses", title: "Agribusinesses", description: "Access support to strengthen, grow and scale.", badge: "AB" },
-      { label: "Innovation", title: "Innovators & Researchers", description: "Connect ideas, research and technology with practical needs.", badge: "IR" },
-      { label: "Markets", title: "Market Actors", description: "Build stronger links among suppliers, buyers and opportunities.", badge: "MA" },
-      { label: "Community", title: "Community & Network Groups", description: "Learn, share and build stronger agricultural communities.", badge: "CN" },
-      { label: "Institutions", title: "Partners & Institutions", description: "Collaborate to create impact at scale.", badge: "PI" },
+      { title: "Aspiring Entrepreneurs", description: "Learn, get inspired and start your journey.", icon: "join" },
+      { title: "Growing Businesses", description: "Access tools and support to scale and grow.", icon: "grow" },
+      { title: "Innovators & Researchers", description: "Turn ideas into solutions with our innovation labs.", icon: "research" },
+      { title: "Market Actors", description: "Buyers, suppliers and service providers in the ecosystem.", icon: "market" },
+      { title: "Community & Network Groups", description: "Learn, share and build stronger agricultural communities.", icon: "community" },
+      { title: "Partners & Institutions", description: "Collaborate with us to create impact at scale.", icon: "handshake" },
     ],
   },
   physicalBridge: {

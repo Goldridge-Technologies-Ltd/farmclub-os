@@ -1,13 +1,13 @@
-import type { HomeAction, ImageAsset, LabelledItem, NamedItem } from "@/content/pages/home";
+import type { HomeAction, IconItem, ImageAsset, LabelledItem, NamedItem } from "@/content/pages/home";
 
 export type AboutPageContent = {
   hero: { eyebrow: string; heading: string; description: string; image: ImageAsset; primaryAction: HomeAction; secondaryAction: HomeAction };
   caseForChange: { eyebrow: string; heading: string; paragraphs: string[]; organisingIdea: string };
   purpose: { eyebrow: string; heading: string; description: string; mission: NamedItem; vision: NamedItem };
   principles: { eyebrow: string; heading: string; items: LabelledItem[] };
-  positioning: { eyebrow: string; heading: string; description: string; connections: NamedItem[] };
+  positioning: { eyebrow: string; heading: string; description: string; connections: IconItem[] };
   audiences: { eyebrow: string; heading: string; groups: string[] };
-  commitments: { eyebrow: string; heading: string; items: NamedItem[] };
+  commitments: { eyebrow: string; heading: string; items: IconItem[] };
   stewardship: { eyebrow: string; heading: string; description: string };
   cta: { eyebrow: string; heading: string; description: string; primaryAction: HomeAction; secondaryAction: HomeAction };
 };
@@ -52,10 +52,10 @@ export const aboutPageContent: AboutPageContent = {
     heading: "One integrated platform for agricultural entrepreneurship.",
     description: "FARMCLUB OS makes it easier to find knowledge, build capability, connect with support and approach opportunities.",
     connections: [
-      { title: "Knowledge", description: "Practical agricultural learning and expert insight." },
-      { title: "Enterprise", description: "Tools, mentoring and resources for starting, growing and scaling." },
-      { title: "Innovation", description: "Ideas, research and technology connected to real needs." },
-      { title: "Markets", description: "Connections to buyers, finance and new opportunities." },
+      { title: "Knowledge", description: "Practical agricultural learning and expert insight.", icon: "learn" },
+      { title: "Enterprise", description: "Tools, mentoring and resources for starting, growing and scaling.", icon: "enterprise" },
+      { title: "Innovation", description: "Ideas, research and technology connected to real needs.", icon: "innovate" },
+      { title: "Markets", description: "Connections to buyers, finance and new opportunities.", icon: "market" },
     ],
   },
   audiences: {
@@ -67,12 +67,12 @@ export const aboutPageContent: AboutPageContent = {
     eyebrow: "Our commitment to change",
     heading: "Our Impact Focus",
     items: [
-      { title: "Youth & Women Inclusion", description: "Creating more accessible pathways into agricultural entrepreneurship." },
-      { title: "Food System Transformation", description: "Supporting knowledge and innovation for stronger food systems." },
-      { title: "Enterprise Growth", description: "Providing the tools, mentoring and resources to start, grow and scale." },
-      { title: "Market Access", description: "Connecting entrepreneurs to buyers, networks and new market opportunities." },
-      { title: "Financing Solutions", description: "Helping entrepreneurs understand and approach relevant finance pathways." },
-      { title: "Stronger Together", description: "Building a collaborative ecosystem for collective action and sustainable impact." },
+      { title: "Youth & Women Inclusion", description: "Creating more accessible pathways into agricultural entrepreneurship.", icon: "connect" },
+      { title: "Food System Transformation", description: "Supporting knowledge and innovation for stronger food systems.", icon: "sustainability" },
+      { title: "Enterprise Growth", description: "Providing the tools, mentoring and resources to start, grow and scale.", icon: "grow" },
+      { title: "Market Access", description: "Connecting entrepreneurs to buyers, networks and new market opportunities.", icon: "market" },
+      { title: "Financing Solutions", description: "Helping entrepreneurs understand and approach relevant finance pathways.", icon: "finance" },
+      { title: "Stronger Together", description: "Building a collaborative ecosystem for collective action and sustainable impact.", icon: "handshake" },
     ],
   },
   stewardship: {

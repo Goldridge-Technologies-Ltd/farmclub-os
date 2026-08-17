@@ -1,37 +1,209 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { SectionIntro } from "@/components/home/SectionIntro";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { CapabilityPill } from "@/components/ui/CapabilityPill";
 import { CtaBand } from "@/components/ui/CtaBand";
 import { FeatureCard } from "@/components/ui/FeatureCard";
-import { IconBadge } from "@/components/ui/IconBadge";
+import { Icon } from "@/components/ui/Icon";
+import { PageHero } from "@/components/ui/PageHero";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { StepJourney } from "@/components/ui/StepJourney";
 import { platformPageContent as content } from "@/content/pages/platform";
 
-export const metadata: Metadata = { title: "Platform", description: "Explore the FARMCLUB OS Four Engines and connected agricultural enterprise operating model." };
+export const metadata: Metadata = {
+  title: "Platform",
+  description:
+    "Explore the FARMCLUB OS platform modules and the connected agricultural enterprise operating model.",
+};
 
 export default function PlatformPage() {
   return (
     <>
-      <section className="overflow-hidden bg-farm-cream-100"><div className="site-container grid min-h-[calc(100svh-5rem)] gap-12 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <div><SectionLabel>{content.hero.eyebrow}</SectionLabel><h1 className="mt-5 text-4xl font-semibold leading-[1.04] text-farm-green-950 sm:text-6xl lg:text-7xl">{content.hero.heading}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-farm-muted sm:text-xl">{content.hero.description}</p><div className="mt-9 flex flex-wrap gap-3"><ButtonLink href={content.hero.primaryAction.href}>{content.hero.primaryAction.label}</ButtonLink><ButtonLink href={content.hero.secondaryAction.href} variant="secondary">{content.hero.secondaryAction.label}</ButtonLink></div></div>
-        <div className="relative min-h-[480px] lg:min-h-[650px]"><div className="absolute inset-0 overflow-hidden rounded-lg"><Image src={content.hero.image.src} alt={content.hero.image.alt} fill priority sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" /><div className="absolute inset-0 bg-farm-green-950/35" /></div><div className="absolute inset-x-5 bottom-5 grid grid-cols-2 gap-2 sm:inset-x-8 sm:bottom-8">{content.architecture.engines.map((engine) => <div key={engine.title} className="border border-white/20 bg-farm-green-950/88 p-4 text-white backdrop-blur-sm"><p className="text-xs font-semibold uppercase tracking-[0.14em] text-farm-gold-400">{engine.label}</p><p className="mt-2 text-sm font-semibold">{engine.title.replace("FARMCLUB ", "")}</p></div>)}</div></div>
-      </div></section>
-      <section className="section-padding bg-white"><div className="site-container grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"><SectionIntro eyebrow={content.concept.eyebrow} heading={content.concept.heading} /><div><p className="text-lg leading-8 text-farm-muted">{content.concept.description}</p><ul className="mt-8 grid gap-3 sm:grid-cols-2">{content.concept.principles.map((principle, index) => <li key={principle} className="flex gap-3 border-t border-farm-border pt-4 text-sm font-semibold leading-6 text-farm-green-950"><span className="text-farm-gold-500">0{index + 1}</span>{principle}</li>)}</ul></div></div></section>
-      <section id="four-engines" className="section-padding scroll-mt-24 bg-farm-green-950 text-white"><div className="site-container">
-        <SectionIntro eyebrow={content.architecture.eyebrow} heading={content.architecture.heading} description={content.architecture.description} align="center" tone="dark" />
-        <div className="relative mt-14 lg:grid lg:grid-cols-[1fr_0.66fr_1fr] lg:items-center lg:gap-8"><div className="grid gap-5">{content.architecture.engines.slice(0, 2).map((engine) => <EnginePanel key={engine.title} engine={engine} />)}</div><div className="relative my-8 flex min-h-64 items-center justify-center lg:my-0"><div className="absolute inset-x-0 top-1/2 hidden h-px bg-white/20 lg:block" /><div className="relative z-10 flex aspect-square w-52 flex-col items-center justify-center rounded-full border border-farm-gold-400/60 bg-farm-green-900 p-7 text-center shadow-[0_0_0_14px_rgb(255_255_255_/_4%)]"><IconBadge label={content.architecture.core.title} value="OS" tone="gold" /><h3 className="mt-4 text-2xl font-semibold">{content.architecture.core.title}</h3><p className="mt-3 text-xs leading-5 text-white/70">{content.architecture.core.description}</p></div></div><div className="grid gap-5">{content.architecture.engines.slice(2).map((engine) => <EnginePanel key={engine.title} engine={engine} />)}</div></div>
-      </div></section>
-      <section className="section-padding bg-farm-cream-100"><div className="site-container"><SectionIntro eyebrow={content.capabilityMap.eyebrow} heading={content.capabilityMap.heading} /><div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-farm-border bg-farm-border sm:grid-cols-2 lg:grid-cols-3">{content.capabilityMap.items.map((item) => <article key={item.title} className="bg-white p-7"><span className="text-sm font-semibold text-farm-gold-500">{item.badge}</span><h3 className="mt-8 text-2xl font-semibold text-farm-green-950">{item.title}</h3><p className="mt-3 text-sm leading-7 text-farm-muted">{item.description}</p></article>)}</div></div></section>
-      <section className="section-padding bg-white"><div className="site-container"><SectionIntro eyebrow={content.journey.eyebrow} heading={content.journey.heading} description={content.journey.description} /><ol className="mt-12 grid border-l border-farm-green-700 md:grid-cols-3 md:border-l-0 md:border-t">{content.journey.steps.map((step) => <li key={step.title} className="relative px-6 py-7 md:px-5 md:pt-9"><span className="absolute -left-2.5 top-8 h-5 w-5 rounded-full border-4 border-white bg-farm-gold-500 md:-top-2.5 md:left-5" /><span className="text-sm font-semibold text-farm-green-700">{step.badge}</span><h3 className="mt-3 text-xl font-semibold text-farm-green-950">{step.title}</h3><p className="mt-3 text-sm leading-7 text-farm-muted">{step.description}</p></li>)}</ol></div></section>
-      <section className="section-padding bg-farm-cream-50"><div className="site-container"><SectionIntro eyebrow={content.useCases.eyebrow} heading={content.useCases.heading} align="center" /><div className="mt-12 grid gap-4 md:grid-cols-2">{content.useCases.items.map((item) => <FeatureCard key={item.title} {...item} />)}</div></div></section>
-      <section className="section-padding bg-farm-green-950 text-white"><div className="site-container grid gap-10 lg:grid-cols-2 lg:items-center"><div className="relative aspect-[4/3] overflow-hidden rounded-lg"><Image src={content.physicalBridge.image.src} alt={content.physicalBridge.image.alt} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" /></div><div><SectionLabel tone="dark">{content.physicalBridge.eyebrow}</SectionLabel><h2 className="mt-4 text-3xl font-semibold sm:text-5xl">{content.physicalBridge.heading}</h2><p className="mt-5 text-lg leading-8 text-white/74">{content.physicalBridge.description}</p><div className="mt-8 flex flex-wrap gap-3">{content.physicalBridge.flow.map((item) => <CapabilityPill key={item} tone="dark">{item}</CapabilityPill>)}</div></div></div></section>
-      <CtaBand {...content.cta} />
+      <PageHero
+        eyebrow={content.hero.eyebrow}
+        heading={content.hero.heading}
+        description={content.hero.description}
+        image={content.hero.image}
+        imagePosition="object-[64%_center]"
+        primaryAction={content.hero.primaryAction}
+        secondaryAction={content.hero.secondaryAction}
+      />
+
+      {/* Capability band */}
+      <section className="bg-white pt-8">
+        <div className="site-container">
+          <ul className="grid gap-y-9 rounded-band bg-farm-green-900 px-6 py-11 text-white sm:grid-cols-2 sm:px-8 lg:grid-cols-6 lg:gap-y-0">
+            {content.capabilityMap.items.map((item, index) => (
+              <li
+                key={item.title}
+                className={[
+                  "px-2 text-center",
+                  index > 0 ? "lg:border-l lg:border-white/12" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full border border-farm-gold-400/40 text-farm-gold-400">
+                  <Icon name={item.icon} size={25} />
+                </span>
+                <h3 className="mt-4 text-base">{item.title}</h3>
+                <p className="mt-2 text-xs leading-5 text-white/62">
+                  {item.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Journey */}
+      <section
+        id="how-it-works"
+        className="section-padding scroll-mt-24 bg-white"
+      >
+        <div className="site-container">
+          <div className="rounded-band border border-farm-border bg-farm-cream-50 px-6 py-11 sm:px-9 lg:grid lg:grid-cols-[0.72fr_2fr] lg:items-center lg:gap-10">
+            <div>
+              <SectionLabel>{content.journey.eyebrow}</SectionLabel>
+              <h2 className="mt-3 text-[1.6rem] leading-tight text-farm-green-950 sm:text-[1.9rem]">
+                {content.journey.heading}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-farm-muted">
+                {content.journey.description}
+              </p>
+              <ButtonLink href={content.journey.action.href} className="mt-7">
+                {content.journey.action.label}
+              </ButtonLink>
+            </div>
+            <StepJourney
+              steps={content.journey.steps}
+              size="sm"
+              className="mt-10 lg:mt-0"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Modules */}
+      <section
+        id="modules"
+        className="section-padding scroll-mt-24 bg-farm-cream-50"
+      >
+        <div className="site-container">
+          <SectionIntro
+            eyebrow={content.architecture.eyebrow}
+            heading={content.architecture.heading}
+            description={content.architecture.description}
+          />
+          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {content.architecture.modules.map((module) => (
+              <article
+                key={module.title}
+                className="surface-card flex h-full flex-col p-6 sm:p-7"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-farm-green-700 text-white">
+                    <Icon name={module.icon} size={22} />
+                  </span>
+                  <span className="text-sm font-bold text-farm-muted/45">
+                    {module.badge}
+                  </span>
+                </div>
+                <p className="mt-5 text-xs font-bold uppercase tracking-[0.14em] text-farm-gold-600">
+                  {module.label}
+                </p>
+                <h3 className="mt-1.5 text-lg text-farm-green-950">
+                  {module.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-7 text-farm-muted">
+                  {module.description}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2 border-t border-farm-border pt-4">
+                  {module.supports.map((support) => (
+                    <li
+                      key={support}
+                      className="rounded-full bg-farm-green-50 px-3 py-1 text-xs font-medium text-farm-green-900"
+                    >
+                      {support}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who we serve */}
+      <section
+        id="who-we-serve"
+        className="section-padding scroll-mt-24 bg-white"
+      >
+        <div className="site-container">
+          <SectionIntro
+            eyebrow={content.useCases.eyebrow}
+            heading={content.useCases.heading}
+            align="center"
+          />
+          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {content.useCases.items.map((item) => (
+              <FeatureCard
+                key={item.title}
+                title={item.title}
+                description={item.description}
+                icon={item.icon}
+                align="center"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hub bridge */}
+      <section className="bg-white pb-4">
+        <div className="site-container">
+          <div className="grid gap-9 rounded-band bg-farm-green-950 p-6 text-white sm:p-9 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-card">
+              <Image
+                src={content.physicalBridge.image.src}
+                alt={content.physicalBridge.image.alt}
+                fill
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <SectionLabel tone="dark">
+                {content.physicalBridge.eyebrow}
+              </SectionLabel>
+              <h2 className="mt-3 text-[1.6rem] leading-tight sm:text-[2rem]">
+                {content.physicalBridge.heading}
+              </h2>
+              <p className="mt-4 text-[0.95rem] leading-7 text-white/72">
+                {content.physicalBridge.description}
+              </p>
+              <ul className="mt-7 flex flex-wrap gap-2.5">
+                {content.physicalBridge.flow.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-white/20 px-4 py-1.5 text-sm text-white/85"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CtaBand
+        heading={`${content.cta.eyebrow} ${content.cta.heading}`}
+        description={content.cta.description}
+        primaryAction={content.cta.primaryAction}
+        secondaryAction={content.cta.secondaryAction}
+        icon="platform"
+      />
     </>
   );
-}
-
-function EnginePanel({ engine }: { engine: (typeof content.architecture.engines)[number] }) {
-  return <article className="dark-panel p-5"><div className="flex items-center gap-4"><IconBadge label={engine.title} value={engine.badge} tone="dark" /><div><p className="text-xs font-semibold uppercase tracking-[0.15em] text-farm-gold-400">{engine.label}</p><h3 className="mt-1 text-xl font-semibold">{engine.title}</h3></div></div><p className="mt-4 text-sm leading-7 text-white/72">{engine.description}</p><div className="mt-4 flex flex-wrap gap-2">{engine.supports.map((item) => <CapabilityPill key={item} tone="dark">{item}</CapabilityPill>)}</div></article>;
 }
