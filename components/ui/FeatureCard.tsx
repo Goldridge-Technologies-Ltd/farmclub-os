@@ -1,66 +1,75 @@
-import type { ReactNode } from "react";
-import { IconBadge } from "@/components/ui/IconBadge";
+import Link from "next/link";
+import { Icon } from "@/components/ui/Icon";
+import { IconDisc } from "@/components/ui/IconDisc";
+import type { DiscTone } from "@/components/ui/IconDisc";
+import type { IconName } from "@/components/ui/Icon";
 
 type FeatureCardProps = {
   title: string;
   description: string;
+  icon?: IconName;
+  tone?: DiscTone;
   label?: string;
-  badge?: string;
-  tone?: "light" | "dark";
-  children?: ReactNode;
+  /** Centred cards are used in icon grids; left-aligned in content grids. */
+  align?: "left" | "center";
+  href?: string;
+  linkLabel?: string;
+  className?: string;
 };
 
 export function FeatureCard({
   title,
   description,
+  icon,
+  tone = "green",
   label,
-  badge,
-  tone = "light",
-  children,
+  align = "left",
+  href,
+  linkLabel = "Explore",
+  className,
 }: FeatureCardProps) {
-  const isDark = tone === "dark";
+  const isCenter = align === "center";
 
   return (
     <article
       className={[
-        "rounded-lg p-5 transition duration-200",
-        isDark
-          ? "dark-panel text-white hover:bg-white/10"
-          : "surface-panel text-farm-charcoal hover:-translate-y-0.5 hover:border-farm-green-700/40",
-      ].join(" ")}
+        "surface-card flex h-full flex-col p-6 sm:p-7",
+        isCenter ? "items-center text-center" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <div className="flex items-start gap-4">
-        <IconBadge label={title} value={badge} tone={isDark ? "dark" : "light"} />
-        <div>
-          {label ? (
-            <p
-              className={[
-                "text-xs font-semibold uppercase tracking-[0.16em]",
-                isDark ? "text-farm-gold-400" : "text-farm-green-700",
-              ].join(" ")}
-            >
-              {label}
-            </p>
-          ) : null}
-          <h3
-            className={[
-              "text-xl font-semibold",
-              isDark ? "text-white" : "text-farm-green-950",
-            ].join(" ")}
-          >
-            {title}
-          </h3>
-        </div>
-      </div>
-      <p
+      {icon ? <IconDisc name={icon} tone={tone} /> : null}
+      {label ? (
+        <p className="mt-5 text-xs font-bold uppercase tracking-[0.14em] text-farm-gold-600">
+          {label}
+        </p>
+      ) : null}
+      <h3
         className={[
-          "mt-4 text-sm leading-7",
-          isDark ? "text-white/76" : "text-farm-muted",
-        ].join(" ")}
+          "text-lg text-farm-green-950",
+          icon && !label ? "mt-5" : label ? "mt-2" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
-        {description}
-      </p>
-      {children ? <div className="mt-5">{children}</div> : null}
+        {title}
+      </h3>
+      <p className="mt-2.5 text-sm leading-7 text-farm-muted">{description}</p>
+      {href ? (
+        <Link
+          href={href}
+          className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-farm-green-800 transition-colors hover:text-farm-green-950"
+        >
+          {linkLabel}
+          <Icon
+            name="arrow-right"
+            size={16}
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          />
+        </Link>
+      ) : null}
     </article>
   );
 }

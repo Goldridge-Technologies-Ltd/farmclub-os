@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { AudiencePathways } from "@/components/home/AudiencePathways";
-import { CaseForChange } from "@/components/home/CaseForChange";
 import { CapabilityStrip } from "@/components/home/CapabilityStrip";
 import { EntrepreneurJourney } from "@/components/home/EntrepreneurJourney";
 import { FinalCta } from "@/components/home/FinalCta";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HubsSection } from "@/components/home/HubsSection";
-import { InstitutionalEngagement } from "@/components/home/InstitutionalEngagement";
-import { KnowledgePreview } from "@/components/home/KnowledgePreview";
-import { MissionCallout } from "@/components/home/MissionCallout";
 import { PlatformEcosystem } from "@/components/home/PlatformEcosystem";
 import { homePageContent } from "@/content/pages/home";
 
@@ -40,15 +35,10 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HeroSection content={homePageContent.hero} />
-      <CapabilityStrip capabilities={homePageContent.capabilityStrip} />
-      <CaseForChange content={homePageContent.caseForChange} />
-      <MissionCallout content={homePageContent.mission} />
+      <CapabilityStrip content={homePageContent.capabilities} />
       <PlatformEcosystem content={homePageContent.ecosystem} />
       <EntrepreneurJourney content={homePageContent.journey} />
       <HubsSection content={homePageContent.hubs} />
-      <AudiencePathways content={homePageContent.audiences} />
-      <KnowledgePreview content={homePageContent.knowledge} />
-      <InstitutionalEngagement content={homePageContent.engagement} />
       <FinalCta content={homePageContent.finalCta} />
     </>
   );

@@ -1,6 +1,6 @@
+import Image from "next/image";
+import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { CapabilityPill } from "@/components/ui/CapabilityPill";
-import { MediaFrame } from "@/components/ui/MediaFrame";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import type { HomeAction, ImageAsset } from "@/content/pages/home";
 
@@ -8,57 +8,123 @@ type PageHeroProps = {
   eyebrow: string;
   heading: string;
   description: string;
-  primaryAction: HomeAction;
-  secondaryAction?: HomeAction;
   image: ImageAsset;
-  imageCaption?: string;
-  supportItems?: string[];
+  primaryAction?: HomeAction;
+  secondaryAction?: HomeAction;
+  /**
+   * "overlay" — full-bleed photograph with white copy over a dark scrim.
+   * "split"   — light background with the photograph bleeding off the right.
+   */
+  variant?: "overlay" | "split";
+  /** Focal point for the photograph, e.g. "object-[70%_center]". */
+  imagePosition?: string;
+  /** Extra content under the actions (bullet list, search field, aside card). */
+  children?: ReactNode;
 };
 
 export function PageHero({
   eyebrow,
   heading,
   description,
+  image,
   primaryAction,
   secondaryAction,
-  image,
-  imageCaption,
-  supportItems = [],
+  variant = "overlay",
+  imagePosition = "object-center",
+  children,
 }: PageHeroProps) {
+  const actions =
+    primaryAction || secondaryAction ? (
+      <div className="mt-8 flex flex-wrap gap-3.5">
+        {primaryAction ? (
+          <ButtonLink
+            href={primaryAction.href}
+            size="lg"
+            variant={variant === "overlay" ? "primary" : "primary"}
+          >
+            {primaryAction.label}
+          </ButtonLink>
+        ) : null}
+        {secondaryAction ? (
+          <ButtonLink
+            href={secondaryAction.href}
+            size="lg"
+            variant={variant === "overlay" ? "outline-gold" : "secondary"}
+          >
+            {secondaryAction.label}
+          </ButtonLink>
+        ) : null}
+      </div>
+    ) : null;
+
+  if (variant === "split") {
+    return (
+      <section className="relative isolate overflow-hidden bg-white">
+        {/* Photograph occupies the right of the viewport and bleeds off-screen. */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] lg:block">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            priority
+            sizes="58vw"
+            className={`object-cover ${imagePosition}`}
+          />
+          <div aria-hidden="true" className="hero-scrim-soft" />
+        </div>
+
+        <div className="site-container relative grid min-h-[clamp(24rem,36vw,32rem)] items-center py-12 lg:py-16">
+          <div className="max-w-xl">
+            <SectionLabel>{eyebrow}</SectionLabel>
+            <h1 className="mt-3 text-[2.1rem] leading-[1.1] text-farm-green-950 sm:text-[2.75rem] lg:text-[3.1rem]">
+              {heading}
+            </h1>
+            <p className="mt-5 max-w-lg text-base leading-7 text-farm-muted">
+              {description}
+            </p>
+            {actions}
+            {children}
+          </div>
+        </div>
+
+        {/* Small screens get the photograph below the copy rather than behind it. */}
+        <div className="relative aspect-[16/9] w-full lg:hidden">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="100vw"
+            className={`object-cover ${imagePosition}`}
+          />
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="overflow-hidden bg-farm-cream-50">
-      <div className="site-container grid min-h-[calc(100svh-5rem)] items-center gap-12 py-12 lg:grid-cols-[0.92fr_1.08fr] lg:py-16">
-        <div className="content-narrow">
-          <SectionLabel>{eyebrow}</SectionLabel>
-          <h1 className="mt-5 text-4xl font-semibold leading-[1.04] tracking-normal text-farm-green-950 sm:text-6xl lg:text-7xl">
+    <section className="relative isolate overflow-hidden bg-farm-green-950">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        priority
+        sizes="100vw"
+        className={`object-cover ${imagePosition}`}
+      />
+      <div aria-hidden="true" className="hero-scrim" />
+
+      <div className="site-container relative flex min-h-[clamp(24rem,36vw,32rem)] flex-col justify-center py-14 lg:py-16">
+        <div className="max-w-xl animate-rise lg:max-w-2xl">
+          <SectionLabel tone="dark">{eyebrow}</SectionLabel>
+          <h1 className="mt-3 text-[2.1rem] leading-[1.08] text-white sm:text-[2.75rem] lg:text-[3.25rem]">
             {heading}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-farm-muted sm:text-xl">
+          <p className="mt-5 max-w-xl text-base leading-7 text-white/85">
             {description}
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href={primaryAction.href}>{primaryAction.label}</ButtonLink>
-            {secondaryAction ? (
-              <ButtonLink href={secondaryAction.href} variant="secondary">
-                {secondaryAction.label}
-              </ButtonLink>
-            ) : null}
-          </div>
-          {supportItems.length > 0 ? (
-            <div className="mt-8 flex flex-wrap gap-3">
-              {supportItems.map((item) => (
-                <CapabilityPill key={item}>{item}</CapabilityPill>
-              ))}
-            </div>
-          ) : null}
+          {actions}
+          {children}
         </div>
-        <MediaFrame
-          image={image}
-          aspect="min-h-[360px] sm:min-h-[480px] lg:min-h-[620px]"
-          priority
-          objectPosition="object-[56%_center]"
-          caption={imageCaption}
-        />
       </div>
     </section>
   );

@@ -1,25 +1,143 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { SectionIntro } from "@/components/home/SectionIntro";
+import { BulletList } from "@/components/ui/BulletList";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { CtaBand } from "@/components/ui/CtaBand";
-import { FeatureCard } from "@/components/ui/FeatureCard";
+import { Icon } from "@/components/ui/Icon";
+import { PageHero } from "@/components/ui/PageHero";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { hubsPageContent as content } from "@/content/pages/hubs";
 
-export const metadata: Metadata = { title: "Experience & Innovation Hubs", description: "Explore the generic FARMCLUB OS digital-to-physical Hub model for practical agricultural experience." };
+export const metadata: Metadata = {
+  title: "Experience & Innovation Hub",
+  description:
+    "The Experience & Innovation Hub is the physical heart of FARMCLUB OS — a living environment for learning, testing, creating and scaling agricultural solutions.",
+};
 
 export default function HubsPage() {
   return (
     <>
-      <section className="relative flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-farm-green-950 text-white"><Image src={content.hero.image.src} alt={content.hero.image.alt} fill priority sizes="100vw" className="object-cover" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,47,37,0.94)_0%,rgba(8,47,37,0.68)_48%,rgba(8,47,37,0.18)_100%)]" /><div className="site-container relative z-10 py-14 sm:py-20 lg:py-24"><div className="max-w-3xl"><SectionLabel tone="dark">{content.hero.eyebrow}</SectionLabel><h1 className="mt-5 text-4xl font-semibold leading-[1.04] sm:text-6xl lg:text-7xl">{content.hero.heading}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-white/82 sm:text-xl">{content.hero.description}</p><div className="mt-9"><ButtonLink href={content.hero.action.href} variant="gold">{content.hero.action.label}</ButtonLink></div></div></div></section>
-      <section className="section-padding bg-white"><div className="site-container grid gap-10 lg:grid-cols-[0.85fr_1.15fr]"><SectionIntro eyebrow={content.purpose.eyebrow} heading={content.purpose.heading} /><div className="lg:pt-9"><p className="text-lg leading-8 text-farm-muted">{content.purpose.description}</p><blockquote className="mt-8 border-l-4 border-farm-gold-500 pl-6 text-2xl font-semibold leading-9 text-farm-green-950">{content.purpose.statement}</blockquote></div></div></section>
-      <section className="section-padding bg-farm-cream-100"><div className="site-container"><SectionIntro eyebrow={content.bridge.eyebrow} heading={content.bridge.heading} description={content.bridge.description} align="center" /><ol className="mt-12 grid gap-4 lg:grid-cols-4">{content.bridge.flow.map((step, index) => <li key={step.title} className="relative border-t-2 border-farm-green-700 bg-white p-6 shadow-[var(--shadow-soft)]"><span className="text-sm font-semibold text-farm-gold-500">0{index + 1}</span><h3 className="mt-6 text-2xl font-semibold text-farm-green-950">{step.title}</h3><p className="mt-3 text-sm leading-7 text-farm-muted">{step.description}</p>{index < content.bridge.flow.length - 1 ? <span aria-hidden="true" className="absolute -right-3 top-1/2 z-10 hidden text-2xl text-farm-green-700 lg:block">→</span> : null}</li>)}</ol></div></section>
-      <section className="section-padding bg-farm-green-950 text-white"><div className="site-container"><SectionIntro eyebrow={content.framework.eyebrow} heading={content.framework.heading} tone="dark" /><div className="mt-12 grid gap-5 lg:grid-cols-3">{content.framework.items.map((item, index) => <article key={item.title} className="min-h-72 border border-white/14 p-7"><div className="flex items-center justify-between"><span className="text-sm font-semibold uppercase tracking-[0.18em] text-farm-gold-400">{item.label}</span><span className="text-5xl font-semibold text-white/12">0{index + 1}</span></div><h3 className="mt-14 text-3xl font-semibold">{item.title}</h3><p className="mt-4 text-base leading-8 text-white/72">{item.description}</p></article>)}</div></div></section>
-      <section className="section-padding bg-white"><div className="site-container grid gap-12 lg:grid-cols-[0.7fr_1.3fr]"><div className="lg:sticky lg:top-28 lg:self-start"><SectionIntro eyebrow={content.capabilities.eyebrow} heading={content.capabilities.heading} /></div><div className="grid gap-4 sm:grid-cols-2">{content.capabilities.items.map((item) => <FeatureCard key={item.title} {...item} />)}</div></div></section>
-      <section id="hub-model" className="section-padding scroll-mt-24 bg-farm-cream-100"><div className="site-container"><div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end"><SectionIntro eyebrow={content.model.eyebrow} heading={content.model.heading} /><p className="text-lg leading-8 text-farm-muted">{content.model.description}</p></div><ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-farm-border bg-farm-border md:grid-cols-2">{content.model.stages.map((stage, index) => <li key={stage.title} className="bg-white p-7 sm:p-9"><span className="text-sm font-semibold text-farm-green-700">STAGE 0{index + 1}</span><h3 className="mt-5 text-2xl font-semibold text-farm-green-950">{stage.title}</h3><p className="mt-4 text-sm leading-7 text-farm-muted">{stage.description}</p></li>)}</ol></div></section>
-      <section className="section-padding bg-white"><div className="site-container grid gap-10 lg:grid-cols-[0.8fr_1.2fr]"><SectionIntro eyebrow={content.engines.eyebrow} heading={content.engines.heading} /><div className="divide-y divide-farm-border border-y border-farm-border">{content.engines.links.map((engine, index) => <article key={engine.title} className="grid gap-3 py-6 sm:grid-cols-[3rem_0.85fr_1.15fr]"><span className="font-semibold text-farm-gold-500">0{index + 1}</span><h3 className="font-semibold text-farm-green-950">{engine.title}</h3><p className="text-sm leading-7 text-farm-muted">{engine.description}</p></article>)}</div></div></section>
-      <CtaBand {...content.cta} />
+      <PageHero
+        eyebrow={content.hero.eyebrow}
+        heading={content.hero.heading}
+        description={`${content.hero.statement} ${content.hero.description}`}
+        image={content.hero.image}
+        variant="split"
+        imagePosition="object-[45%_center]"
+        primaryAction={content.hero.primaryAction}
+        secondaryAction={content.hero.secondaryAction}
+      />
+
+      {/* Capability areas */}
+      <section
+        id="capabilities"
+        className="scroll-mt-24 bg-white pt-10 pb-4 lg:pt-12"
+      >
+        <div className="site-container">
+          <ul className="grid gap-y-9 rounded-panel border border-farm-border bg-white px-6 py-10 shadow-[var(--shadow-card)] sm:grid-cols-2 sm:px-8 lg:grid-cols-5 lg:gap-y-0">
+            {content.capabilityAreas.items.map((item, index) => (
+              <li
+                key={item.title}
+                className={[
+                  "px-3 text-center",
+                  index > 0 ? "lg:border-l lg:border-farm-border" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <span className="mx-auto inline-flex text-farm-green-800">
+                  <Icon name={item.icon} size={36} />
+                </span>
+                <h2 className="mt-4 text-base text-farm-green-950">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-xs leading-5 text-farm-muted">
+                  {item.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* What we offer */}
+      <section className="section-padding bg-white">
+        <div className="site-container">
+          <div className="grid gap-9 rounded-band bg-farm-cream-50 p-6 sm:p-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
+            <div>
+              <SectionLabel>{content.offer.eyebrow}</SectionLabel>
+              <h2 className="mt-3 text-[1.7rem] leading-tight text-farm-green-950 sm:text-[2rem]">
+                {content.offer.heading}
+              </h2>
+              <p className="mt-4 text-[0.95rem] leading-7 text-farm-muted">
+                {content.offer.description}
+              </p>
+              <BulletList items={content.offer.facilities} className="mt-7" />
+              <ButtonLink
+                href={content.offer.action.href}
+                size="lg"
+                className="mt-8"
+              >
+                {content.offer.action.label}
+              </ButtonLink>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-card">
+              <Image
+                src={content.offer.image.src}
+                alt={content.offer.image.alt}
+                fill
+                sizes="(min-width: 1024px) 52vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact goals */}
+      <section className="section-padding bg-white pt-0">
+        <div className="site-container">
+          <SectionIntro
+            eyebrow={content.model.eyebrow}
+            heading={content.model.heading}
+            description={content.model.description}
+            align="center"
+          />
+          <ul className="mt-11 grid gap-y-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+            {content.model.stages.map((stage, index) => (
+              <li
+                key={stage.title}
+                className={[
+                  "px-4 text-center",
+                  index > 0 ? "lg:border-l lg:border-farm-border" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <span className="mx-auto inline-flex text-farm-green-800">
+                  <Icon name={stage.icon} size={34} />
+                </span>
+                <h3 className="mt-4 text-[0.95rem] text-farm-green-950">
+                  {stage.title}
+                </h3>
+                <p className="mt-2 text-xs leading-5 text-farm-muted">
+                  {stage.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <CtaBand
+        eyebrow={content.cta.eyebrow}
+        heading={content.cta.heading}
+        description={content.cta.description}
+        primaryAction={content.cta.primaryAction}
+        secondaryAction={content.cta.secondaryAction}
+        icon="calendar"
+      />
     </>
   );
 }

@@ -1,26 +1,147 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { SectionIntro } from "@/components/home/SectionIntro";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { CtaBand } from "@/components/ui/CtaBand";
-import { FeatureCard } from "@/components/ui/FeatureCard";
+import { Icon } from "@/components/ui/Icon";
+import { KnowledgeExplorer } from "@/components/knowledge/KnowledgeExplorer";
+import { PageHero } from "@/components/ui/PageHero";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { knowledgePageContent as content } from "@/content/pages/knowledge";
 
-export const metadata: Metadata = { title: "Knowledge Centre", description: "The growing FARMCLUB OS library for agricultural enterprise knowledge, explainers and approved ecosystem learning." };
+export const metadata: Metadata = {
+  title: "Knowledge Centre",
+  description:
+    "Expert insights, practical tools, training resources and learning paths for agri-entrepreneurs and agribusinesses.",
+};
 
 export default function KnowledgeCentrePage() {
   return (
     <>
-      <section className="bg-white"><div className="site-container grid min-h-[calc(100svh-5rem)] gap-10 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-        <div><p className="font-serif text-2xl italic text-farm-gold-500">Knowledge / Practice / Perspective</p><h1 className="mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] text-farm-green-950 sm:text-6xl lg:text-7xl">{content.hero.heading}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-farm-muted sm:text-xl">{content.hero.description}</p><div className="mt-9"><ButtonLink href={content.hero.action.href}>{content.hero.action.label}</ButtonLink></div></div>
-        <div className="relative min-h-[440px] overflow-hidden rounded-lg lg:min-h-[640px]"><Image src={content.hero.image.src} alt={content.hero.image.alt} fill priority sizes="(min-width: 1024px) 46vw, 100vw" className="object-cover" /><div className="absolute inset-x-0 bottom-0 bg-farm-cream-50/94 p-6"><SectionLabel>{content.hero.eyebrow}</SectionLabel></div></div>
-      </div></section>
-      <section className="border-y border-farm-border bg-farm-cream-100 py-12"><div className="site-container grid gap-8 lg:grid-cols-[0.8fr_1.2fr]"><div><SectionLabel>{content.introduction.eyebrow}</SectionLabel><h2 className="mt-4 text-3xl font-semibold text-farm-green-950 sm:text-4xl">{content.introduction.heading}</h2></div><div><p className="text-lg leading-8 text-farm-muted">{content.introduction.description}</p><p className="mt-6 border-l-4 border-farm-gold-500 pl-5 text-sm font-semibold leading-7 text-farm-green-950">{content.introduction.editorialNote}</p></div></div></section>
-      <section id="coverage" className="section-padding scroll-mt-24 bg-white"><div className="site-container"><SectionIntro eyebrow={content.categories.eyebrow} heading={content.categories.heading} /><div className="mt-12 grid gap-px overflow-hidden border border-farm-border bg-farm-border md:grid-cols-2 lg:grid-cols-3">{content.categories.items.map((item) => <article key={item.title} className="group min-h-72 bg-white p-7"><div className="flex items-center justify-between"><span className="text-xs font-semibold uppercase tracking-[0.16em] text-farm-green-700">{item.label}</span><span className="text-sm font-semibold text-farm-gold-500">{item.badge}</span></div><h3 className="mt-16 text-2xl font-semibold text-farm-green-950">{item.title}</h3><p className="mt-4 text-sm leading-7 text-farm-muted">{item.description}</p></article>)}</div></div></section>
-      <section className="section-padding bg-farm-green-950 text-white"><div className="site-container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"><div><SectionLabel tone="dark">{content.libraryState.eyebrow}</SectionLabel><h2 className="mt-4 text-4xl font-semibold sm:text-5xl">{content.libraryState.heading}</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-white/74">{content.libraryState.description}</p></div><ol className="grid grid-cols-2 gap-px overflow-hidden rounded-lg bg-white/16">{content.libraryState.reviewSteps.map((step, index) => <li key={step} className="bg-farm-green-900 p-6"><span className="text-sm font-semibold text-farm-gold-400">0{index + 1}</span><p className="mt-6 text-lg font-semibold">{step}</p></li>)}</ol></div></section>
-      <section className="section-padding bg-farm-cream-50"><div className="site-container"><SectionIntro eyebrow={content.pathways.eyebrow} heading={content.pathways.heading} align="center" /><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{content.pathways.items.map((item) => <FeatureCard key={item.title} {...item} />)}</div></div></section>
-      <CtaBand {...content.cta} />
+      <PageHero
+        eyebrow={content.hero.eyebrow}
+        heading={content.hero.heading}
+        description={content.hero.description}
+        image={content.hero.image}
+        variant="split"
+        imagePosition="object-[40%_center]"
+      >
+        <KnowledgeExplorer
+          collections={content.categories.items}
+          paths={content.pathways.items}
+        />
+      </PageHero>
+
+      {/* Collections */}
+      <section
+        id="collections"
+        className="scroll-mt-24 bg-white pt-10 pb-4 lg:pt-12"
+      >
+        <div className="site-container">
+          <ul className="grid gap-y-9 rounded-panel border border-farm-border bg-white px-6 py-10 shadow-[var(--shadow-card)] sm:grid-cols-2 sm:px-8 lg:grid-cols-6 lg:gap-y-0">
+            {content.categories.items.map((item, index) => (
+              <li
+                key={item.title}
+                className={[
+                  "px-3 text-center",
+                  index > 0 ? "lg:border-l lg:border-farm-border" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <span className="mx-auto inline-flex text-farm-green-800">
+                  <Icon name={item.icon} size={34} />
+                </span>
+                <h2 className="mt-4 text-[0.95rem] text-farm-green-950">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-xs leading-5 text-farm-muted">
+                  {item.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Library status */}
+      <section className="section-padding bg-white">
+        <div className="site-container">
+          <div className="rounded-band bg-farm-cream-50 px-6 py-11 sm:px-10 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+            <div>
+              <SectionLabel>{content.libraryState.eyebrow}</SectionLabel>
+              <h2 className="mt-3 text-[1.6rem] leading-tight text-farm-green-950 sm:text-[1.95rem]">
+                {content.libraryState.heading}
+              </h2>
+              <p className="mt-4 text-[0.95rem] leading-7 text-farm-muted">
+                {content.libraryState.description}
+              </p>
+            </div>
+            <div className="mt-7 flex gap-4 rounded-card border border-farm-border bg-white p-5 lg:mt-0">
+              <span className="mt-0.5 shrink-0 text-farm-gold-600">
+                <Icon name="report" size={22} />
+              </span>
+              <p className="text-sm leading-7 text-farm-muted">
+                {content.libraryState.note}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Learning paths */}
+      <section
+        id="learning-paths"
+        className="section-padding scroll-mt-24 bg-farm-cream-50 pt-0"
+      >
+        <div className="site-container grid gap-10 lg:grid-cols-[0.72fr_2fr] lg:gap-10">
+          <div>
+            <SectionLabel>{content.pathways.eyebrow}</SectionLabel>
+            <h2 className="mt-3 text-[1.6rem] leading-tight text-farm-green-950 sm:text-[1.9rem]">
+              {content.pathways.heading}
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-farm-muted">
+              {content.pathways.description}
+            </p>
+            <ButtonLink href={content.pathways.action.href} className="mt-7">
+              {content.pathways.action.label}
+            </ButtonLink>
+          </div>
+
+          <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {content.pathways.items.map((path) => (
+              <li key={path.title} className="surface-card flex flex-col p-6">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-farm-green-50 text-farm-green-800">
+                  <Icon name={path.icon} size={22} />
+                </span>
+                <h3 className="mt-5 text-base text-farm-green-950">
+                  {path.title}
+                </h3>
+                <p className="mt-2 text-xs leading-5 text-farm-muted">
+                  {path.description}
+                </p>
+                <ul className="mt-4 grid gap-2 border-t border-farm-border pt-4">
+                  {path.topics.map((topic) => (
+                    <li
+                      key={topic}
+                      className="text-xs leading-5 text-farm-charcoal"
+                    >
+                      {topic}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <CtaBand
+        heading={content.cta.heading}
+        eyebrow={content.cta.eyebrow}
+        description={content.cta.description}
+        primaryAction={content.cta.primaryAction}
+        secondaryAction={content.cta.secondaryAction}
+        icon="community"
+      />
     </>
   );
 }
