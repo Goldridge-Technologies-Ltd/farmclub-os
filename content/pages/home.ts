@@ -52,10 +52,10 @@ export type HomePageContent = {
 
 export const homePageContent: HomePageContent = {
   hero: {
-    eyebrow: "The Digital Platform for",
-    heading: "Agricultural Entrepreneurship & Innovation",
+    eyebrow: "FARMCLUB OS - The Digital Platform",
+    heading: "Building the Next Generation of Technology-Enabled Food Enterprises.",
     description:
-      "FARMCLUB OS connects learning, enterprise development, innovation and markets through one integrated platform.",
+      "FARMCLUB OS connects learning, practical experience, enterprise development, and markets through one integrated platform-focused on technology-enabled managed-space food production.",
     primaryAction: { label: "Explore the Platform", href: "/platform" },
     secondaryAction: { label: "Discover the Ecosystem", href: "#ecosystem" },
     image: {
@@ -65,7 +65,7 @@ export const homePageContent: HomePageContent = {
     mission: {
       eyebrow: "Our Mission",
       statement:
-        "To empower a new generation of food and agricultural entrepreneurs across Africa.",
+        "To empower a new generation of food and agricultural entrepreneurs using an integrated learning-to-enterprise platform for technology-enabled managed-space food production.",
     },
   },
   capabilities: {
@@ -212,7 +212,7 @@ export const homePageContent: HomePageContent = {
       {
         title: "Learn",
         description:
-          "Training and capacity development in modern agriculture and entrepreneurship.",
+          "Training and capacity development in modern, technology-enabled, managed-space food production.",
         icon: "learn",
       },
       {

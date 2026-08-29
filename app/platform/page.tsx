@@ -103,7 +103,7 @@ export default function PlatformPage() {
               >
                 <div className="flex items-center justify-between">
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-farm-green-700 text-white">
-                    <Icon name={module.icon} size={22} />
+                    <Icon name={module.icon} size={22} strokeWidth={2.2} />
                   </span>
                   <span className="text-sm font-bold text-farm-muted/45">
                     {module.badge}

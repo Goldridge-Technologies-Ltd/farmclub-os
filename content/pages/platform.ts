@@ -29,12 +29,12 @@ export const platformPageContent: PlatformPageContent = {
     eyebrow: "A complete ecosystem",
     heading: "Learn. Build. Innovate. Connect. Grow.",
     items: [
-      { title: "Learn", description: "Access courses, training and expert resources.", icon: "learn" },
-      { title: "Build", description: "Develop your business with tools, mentorship and guidance.", icon: "build" },
-      { title: "Innovate", description: "Create and test solutions with technology and research support.", icon: "research" },
-      { title: "Market", description: "Connect to buyers, suppliers and new market opportunities.", icon: "market" },
-      { title: "Finance", description: "Access funding, grants and investment opportunities.", icon: "finance" },
-      { title: "Connect", description: "Join a community of entrepreneurs, institutions and partners.", icon: "connect" },
+      { title: "Learn", description: "Access courses, training and expert resources leading to skills in greenhouse farming, hydroponics and aquaculture.", icon: "learn" },
+      { title: "Build", description: "Develop skills necessary and business tools, mentorship and guidance. Build entrepreneurial capacity.", icon: "build" },
+      { title: "Innovate", description: "Work with groups to create and test solutions, using technology and research support. FARMCLUB will promote unique and innovative ideas through the Experience & Innovation Labs.", icon: "research" },
+      { title: "Market", description: "Connect to buyers, suppliers, service providers, and new market opportunities within the value-chain.", icon: "market" },
+      { title: "Finance", description: "Through integration with CBN licensed financial services providers, stakeholders can access finance, grants and investment opportunities.", icon: "finance" },
+      { title: "Connect", description: "Join a community of learners, entrepreneurs, institutions and partners. Explore the world of FARMCLUB OS.", icon: "connect" },
     ],
   },
   journey: {
@@ -44,8 +44,8 @@ export const platformPageContent: PlatformPageContent = {
     action: { label: "Start Your Journey", href: "/contact" },
     steps: [
       { title: "Join", description: "Create your profile and tell us about your goals.", icon: "join" },
-      { title: "Learn", description: "Access courses, tools and resources.", icon: "book" },
-      { title: "Build", description: "Develop your skills, validate ideas and build your enterprise.", icon: "build" },
+      { title: "Learn", description: "Access different courses, tools and resources to sharpen your skills, and train you in using managed spaces in agricultural enterprise.", icon: "book" },
+      { title: "Build", description: "Develop your skills and build capacity that will help you to understand the use of technology in greenhouse farming, validate ideas and build an enterprise.", icon: "build" },
       { title: "Connect", description: "Join networks and connect with experts and partners.", icon: "connect" },
       { title: "Market", description: "Connect to markets, buyers and expand your reach.", icon: "market" },
       { title: "Grow", description: "Receive mentorship, business support and resources.", icon: "grow" },
@@ -54,7 +54,7 @@ export const platformPageContent: PlatformPageContent = {
   architecture: {
     eyebrow: "Platform modules",
     heading: "Everything You Need. All in One Place.",
-    description: "Learning, enterprise tools, innovation, finance, networks and impact support work together in one platform ecosystem.",
+    description: "Learning & Development, Enterprise Tools, Innovation & Research, Finance & Markets, Community & Network, Impact & Analytics all work together in one platform ecosystem.",
     modules: [
       { label: "Learn", title: "Learning & Development", description: "Interactive courses, live training and practical resources.", badge: "01", icon: "learn", supports: ["Courses", "Training", "Expert knowledge"] },
       { label: "Build", title: "Enterprise Management", description: "Business planning, mentorship and enterprise support.", badge: "02", icon: "enterprise", supports: ["Business tools", "Mentorship", "Enterprise support"] },

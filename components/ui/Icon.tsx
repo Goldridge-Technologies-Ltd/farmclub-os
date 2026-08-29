@@ -64,6 +64,7 @@ type IconProps = SVGProps<SVGSVGElement> & {
   name: IconName;
   size?: number;
   title?: string;
+  strokeWidth?: number;
 };
 
 const strokePaths: Partial<Record<IconName, string[]>> = {
@@ -258,7 +259,13 @@ const filledPaths: Partial<Record<IconName, string>> = {
     "M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41a2.51 2.51 0 0 0-1.77 1.78A26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.42-4.81zM10 15.02V8.98L15.2 12z",
 };
 
-export function Icon({ name, size = 24, title, ...rest }: IconProps) {
+export function Icon({
+  name,
+  size = 24,
+  title,
+  strokeWidth = 1.6,
+  ...rest
+}: IconProps) {
   const filled = filledPaths[name];
   const shared = {
     width: size,
@@ -286,7 +293,7 @@ export function Icon({ name, size = 24, title, ...rest }: IconProps) {
       {...shared}
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.6}
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
     >
