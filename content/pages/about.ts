@@ -2,7 +2,7 @@ import type { HomeAction, IconItem, ImageAsset, LabelledItem, NamedItem } from "
 
 export type AboutPageContent = {
   hero: { eyebrow: string; heading: string; description: string; image: ImageAsset; primaryAction: HomeAction; secondaryAction: HomeAction };
-  caseForChange: { eyebrow: string; heading: string; paragraphs: string[]; organisingIdea: string };
+  caseForChange: { eyebrow: string; heading: string; paragraphs: string[]; organisingIdea: string; image: ImageAsset };
   purpose: { eyebrow: string; heading: string; description: string; mission: NamedItem; vision: NamedItem };
   principles: { eyebrow: string; heading: string; items: LabelledItem[] };
   positioning: { eyebrow: string; heading: string; description: string; connections: IconItem[] };
@@ -17,7 +17,7 @@ export const aboutPageContent: AboutPageContent = {
     eyebrow: "About FARMCLUB OS",
     heading: "Building the Future of Agricultural Entrepreneurship.",
     description: "FARMCLUB OS is an all-in-one digital platform that connects learning, enterprise development, innovation and markets for a new generation of agri-entrepreneurs.",
-    image: { src: "/images/about/about-hero-purpose-collaboration.png", alt: "Agricultural entrepreneurs and collaborators working together with digital tools." },
+    image: { src: "/images/about/about-header.jpg", alt: "A young agri-entrepreneur reviewing production data on a tablet inside a managed-space greenhouse." },
     primaryAction: { label: "Explore the Platform", href: "/platform" },
     secondaryAction: { label: "Partner With Us", href: "/contact" },
   },
@@ -29,6 +29,7 @@ export const aboutPageContent: AboutPageContent = {
       "We built one integrated platform that brings everything together so people can learn, build, connect and grow their agricultural enterprises.",
     ],
     organisingIdea: "We are more than a platform. We are a movement inspiring a new era of innovation and impact in agriculture.",
+    image: { src: "/images/about/about-tech.jpg", alt: "An agri-entrepreneur working with the FARMCLUB OS dashboard, reviewing learner, enterprise and impact data." },
   },
   purpose: {
     eyebrow: "Who we are",

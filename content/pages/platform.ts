@@ -6,12 +6,15 @@ export type PlatformModule = IconItem & {
   supports: string[];
 };
 
+/** A "Who We Serve" audience, led by a photograph rather than an icon. */
+export type AudienceCard = IconItem & { image: ImageAsset };
+
 export type PlatformPageContent = {
   hero: { eyebrow: string; heading: string; description: string; image: ImageAsset; primaryAction: HomeAction; secondaryAction: HomeAction };
   capabilityMap: { eyebrow: string; heading: string; items: IconItem[] };
   journey: { eyebrow: string; heading: string; description: string; action: HomeAction; steps: IconItem[] };
-  architecture: { eyebrow: string; heading: string; description: string; modules: PlatformModule[] };
-  useCases: { eyebrow: string; heading: string; items: IconItem[] };
+  architecture: { eyebrow: string; heading: string; description: string; image: ImageAsset; modules: PlatformModule[] };
+  useCases: { eyebrow: string; heading: string; items: AudienceCard[] };
   physicalBridge: { eyebrow: string; heading: string; description: string; image: ImageAsset; flow: string[] };
   cta: { eyebrow: string; heading: string; description: string; primaryAction: HomeAction; secondaryAction: HomeAction };
 };
@@ -55,6 +58,8 @@ export const platformPageContent: PlatformPageContent = {
     eyebrow: "Platform modules",
     heading: "Everything You Need. All in One Place.",
     description: "Learning & Development, Enterprise Tools, Innovation & Research, Finance & Markets, Community & Network, Impact & Analytics all work together in one platform ecosystem.",
+    image: { src: "/images/platform/platform-ecosystem.jpg", alt: "The FARMCLUB OS ecosystem: Academy, Connect, Entrepreneur and Impact at the centre, surrounded by education partners, learners and participants, mentors and experts, partner farms, experience and innovation hubs and development partners, with the FARMCLUB journey from Learn to Impact and the outcomes it creates." },
+    /** Retained for reference; the section now leads with the ecosystem infographic. */
     modules: [
       { label: "Learn", title: "Learning & Development", description: "Interactive courses, live training and practical resources.", badge: "01", icon: "learn", supports: ["Courses", "Training", "Expert knowledge"] },
       { label: "Build", title: "Enterprise Management", description: "Business planning, mentorship and enterprise support.", badge: "02", icon: "enterprise", supports: ["Business tools", "Mentorship", "Enterprise support"] },
@@ -68,12 +73,12 @@ export const platformPageContent: PlatformPageContent = {
     eyebrow: "Built for every agri-entrepreneur",
     heading: "Who We Serve",
     items: [
-      { title: "Aspiring Entrepreneurs", description: "Learn, get inspired and start your journey.", icon: "join" },
-      { title: "Growing Businesses", description: "Access tools and support to scale and grow.", icon: "grow" },
-      { title: "Innovators & Researchers", description: "Turn ideas into solutions with our innovation labs.", icon: "research" },
-      { title: "Market Actors", description: "Buyers, suppliers and service providers in the ecosystem.", icon: "market" },
-      { title: "Community & Network Groups", description: "Learn, share and build stronger agricultural communities.", icon: "community" },
-      { title: "Partners & Institutions", description: "Collaborate with us to create impact at scale.", icon: "handshake" },
+      { title: "Aspiring Entrepreneurs", description: "Learn, get inspired and start your journey.", icon: "join", image: { src: "/images/platform/who-we-serve/serve-1.webp", alt: "A secondary school student smiling at her desk during a lesson." } },
+      { title: "Growing Businesses", description: "Access tools and support to scale and grow.", icon: "grow", image: { src: "/images/platform/who-we-serve/serve-2.webp", alt: "A woman entrepreneur inspecting leafy greens she has grown in a managed-space greenhouse." } },
+      { title: "Innovators & Researchers", description: "Turn ideas into solutions with our innovation labs.", icon: "research", image: { src: "/images/platform/who-we-serve/serve-3.webp", alt: "A producer standing between rows of greenhouse crops in a managed-space growing facility." } },
+      { title: "Market Actors", description: "Buyers, suppliers and service providers in the ecosystem.", icon: "market", image: { src: "/images/platform/who-we-serve/serve-4.webp", alt: "An agri-enterprise operator reviewing stock on a tablet in a packaging and distribution warehouse." } },
+      { title: "Community & Network Groups", description: "Learn, share and build stronger agricultural communities.", icon: "community", image: { src: "/images/platform/who-we-serve/serve-5.webp", alt: "A professional working on a laptop in a shared workspace alongside colleagues." } },
+      { title: "Partners & Institutions", description: "Collaborate with us to create impact at scale.", icon: "handshake", image: { src: "/images/platform/who-we-serve/serve-6.webp", alt: "Two partners discussing an agreement together over a laptop in a meeting room." } },
     ],
   },
   physicalBridge: {

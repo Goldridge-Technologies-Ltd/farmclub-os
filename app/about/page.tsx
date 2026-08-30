@@ -109,10 +109,12 @@ export default function AboutPage() {
               {content.cta.primaryAction.label}
             </ButtonLink>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-panel">
+          {/* The technology image is a wide dashboard panorama; its natural ratio
+              keeps the FARMCLUB OS interface readable instead of centre-cropping it. */}
+          <div className="relative aspect-[732/277] overflow-hidden rounded-panel">
             <Image
-              src={content.hero.image.src}
-              alt="FARMCLUB OS collaborators working together in an agricultural setting."
+              src={content.caseForChange.image.src}
+              alt={content.caseForChange.image.alt}
               fill
               sizes="(min-width: 1024px) 52vw, 100vw"
               className="object-cover"

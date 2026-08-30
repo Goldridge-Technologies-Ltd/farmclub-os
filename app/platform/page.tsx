@@ -95,41 +95,19 @@ export default function PlatformPage() {
             heading={content.architecture.heading}
             description={content.architecture.description}
           />
-          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {content.architecture.modules.map((module) => (
-              <article
-                key={module.title}
-                className="surface-card flex h-full flex-col p-6 sm:p-7"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-farm-green-700 text-white">
-                    <Icon name={module.icon} size={22} strokeWidth={2.2} />
-                  </span>
-                  <span className="text-sm font-bold text-farm-muted/45">
-                    {module.badge}
-                  </span>
-                </div>
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.14em] text-farm-gold-600">
-                  {module.label}
-                </p>
-                <h3 className="mt-1.5 text-lg text-farm-green-950">
-                  {module.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-7 text-farm-muted">
-                  {module.description}
-                </p>
-                <ul className="mt-5 flex flex-wrap gap-2 border-t border-farm-border pt-4">
-                  {module.supports.map((support) => (
-                    <li
-                      key={support}
-                      className="rounded-full bg-farm-green-50 px-3 py-1 text-xs font-medium text-farm-green-900"
-                    >
-                      {support}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+          {/* The ecosystem infographic carries dense internal labels, so on narrow
+              screens it scrolls horizontally at a readable size instead of shrinking. */}
+          <div className="mt-11 -mx-5 overflow-x-auto px-5 md:mx-0 md:px-0">
+            <div className="surface-card mx-auto min-w-[44rem] max-w-[62rem] overflow-hidden p-3 sm:p-5 lg:min-w-0">
+              <Image
+                src={content.architecture.image.src}
+                alt={content.architecture.image.alt}
+                width={722}
+                height={517}
+                sizes="(min-width: 1024px) 62rem, 44rem"
+                className="h-auto w-full rounded-card"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -151,7 +129,8 @@ export default function PlatformPage() {
                 key={item.title}
                 title={item.title}
                 description={item.description}
-                icon={item.icon}
+                image={item.image}
+                imageSizes="(min-width: 1024px) 23rem, (min-width: 640px) 46vw, 100vw"
                 align="center"
               />
             ))}
