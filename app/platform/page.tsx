@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/ui/CtaBand";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
+import { PlatformModulesDiagram } from "@/components/platform/PlatformModulesDiagram";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { StepJourney } from "@/components/ui/StepJourney";
@@ -94,21 +95,14 @@ export default function PlatformPage() {
             eyebrow={content.architecture.eyebrow}
             heading={content.architecture.heading}
             description={content.architecture.description}
+            align="center"
           />
-          {/* The ecosystem infographic carries dense internal labels, so on narrow
-              screens it scrolls horizontally at a readable size instead of shrinking. */}
-          <div className="mt-11 -mx-5 overflow-x-auto px-5 md:mx-0 md:px-0">
-            <div className="surface-card mx-auto min-w-[44rem] max-w-[62rem] overflow-hidden p-3 sm:p-5 lg:min-w-0">
-              <Image
-                src={content.architecture.image.src}
-                alt={content.architecture.image.alt}
-                width={722}
-                height={517}
-                sizes="(min-width: 1024px) 62rem, 44rem"
-                className="h-auto w-full rounded-card"
-              />
-            </div>
+          <div className="surface-card mx-auto mt-11 max-w-[42rem] p-6 sm:p-9 lg:max-w-none">
+            <PlatformModulesDiagram modules={content.architecture.modules} />
           </div>
+          <p className="mt-7 text-center text-sm text-farm-muted">
+            {content.architecture.supportingLine}
+          </p>
         </div>
       </section>
 

@@ -94,8 +94,15 @@ Text-safe area: Left side.
 Subject placement: Right side.
 Used in: `content/pages/home.ts` — `hero.image`.
 
-The homepage Hub section re-uses the hubs hero (see below) rather than carrying
-its own image.
+### /images/home/experience-innovation-hub.jpg
+
+1672x941 (16:9). Companion crop: `experience-innovation-hub-mobile.jpg`
+(1254x941, 4:3, supplied but currently unused — the 16:9 original is used at
+all breakpoints in the section's fixed `aspect-[4/3.1]` card).
+Purpose: "Experience & Innovation Hubs" section on the homepage. A clean
+editorial photograph of learners and an instructor around hydroponic and
+aquaponic growing systems, with no on-image text or metrics.
+Used in: `content/pages/home.ts` — `hubs.image`.
 
 ---
 
@@ -140,18 +147,12 @@ Used in: `content/pages/platform.ts` — `hero.image`.
 ### /images/platform/platform-ecosystem.jpg
 
 722x517.
-Purpose: "Platform modules" section. This infographic is the section's whole
-visual — it replaced the six module cards, which remain in
-`content/pages/platform.ts` as `architecture.modules` for reference only.
-Presents FARMCLUB OS at the centre with Academy, Connect, Entrepreneur and
-Impact, surrounded by education partners, learners and participants, mentors
-and experts, partner farms, experience and innovation hubs and development
-partners, plus the FARMCLUB journey and the outcomes it creates.
-This asset carries text, so it must stay legible: `app/platform/page.tsx` caps
-it at 62rem on desktop and gives it a controlled horizontal overflow below the
-`md` breakpoint rather than shrinking it. Any replacement should be at least as
-wide and should keep its labels readable at roughly 950px.
-Used in: `content/pages/platform.ts` — `architecture.image`.
+Status: Unused. This raster infographic used to be the whole visual for the
+"Platform modules" section. It was replaced by `PlatformModulesDiagram`
+(`components/platform/PlatformModulesDiagram.tsx`), a responsive SVG/HTML
+radial diagram built from `content/pages/platform.ts` —
+`architecture.modules`, which is live content again rather than a reference
+copy. Safe to delete once confirmed nothing else needs it.
 
 ### /images/platform/who-we-serve/serve-1.webp … serve-6.webp
 
@@ -175,15 +176,34 @@ Used in: `content/pages/platform.ts` — `useCases.items[].image`.
 
 ## Hubs Images
 
+### /images/hubs/hubs-hero-authentic.jpg
+
+1500x844 (16:9). Companion crop: `hubs-hero-authentic-mobile.jpg` (830x1038,
+supplied but currently unused — the 16:9 original already matches both the
+`PageHero` split-hero desktop column and its `aspect-[16/9]` mobile block).
+Purpose: Authentic photograph of participants in a FARMCLUB OS greenhouse,
+replacing the generated greenhouse artwork for the Hubs-page hero.
+Used in: `content/pages/hubs.ts` — `hero.image`.
+
+### /images/hubs/hubs-offer-authentic.jpg
+
+1280x960 (4:3, matching the "What we offer" panel's `aspect-[4/3]` exactly).
+A complementary crop of the same authentic FARMCLUB environment as
+`hubs-hero-authentic.jpg`, differentiated by aspect ratio and framing so the
+two do not read as duplicate images on the page.
+Purpose: "A Hub Designed for Transformation" visual.
+Used in: `content/pages/hubs.ts` — `offer.image`.
+
 ### /images/hubs/hubs-hero-innovation-greenhouse.png
 
 1672x941.
 Purpose: Generic Experience and Innovation Hub imagery.
 No location names or signs.
-Used in four places: `content/pages/hubs.ts` (`hero.image` and `offer.image`),
-`content/pages/home.ts` (`hubs.image`, the homepage Hub section) and
-`content/pages/platform.ts` (`physicalBridge.image`).
-Replacing it changes all four.
+Used in: `content/pages/platform.ts` — `physicalBridge.image` (the "Hub
+bridge" band on the Platform page). Previously also used for the Hubs-page
+hero/offer images and the homepage Hub section; those three were moved to
+authentic photography — see `hubs-hero-authentic.jpg`,
+`hubs-offer-authentic.jpg` and `experience-innovation-hub.jpg`.
 
 ---
 

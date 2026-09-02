@@ -199,8 +199,8 @@ export const homePageContent: HomePageContent = {
       "Our physical hubs bring technology, training and smart agriculture solutions closer to communities.",
     action: { label: "Explore Our Hubs", href: "/hubs" },
     image: {
-      src: "/images/hubs/hubs-hero-innovation-greenhouse.png",
-      alt: "An agricultural team working together in a greenhouse innovation setting.",
+      src: "/images/home/experience-innovation-hub.jpg",
+      alt: "Learners receiving practical hydroponics and aquaponics training in an Experience and Innovation Hub.",
     },
     imageCaption: {
       title: "The Experience & Innovation Hub",

@@ -13,7 +13,7 @@ export type PlatformPageContent = {
   hero: { eyebrow: string; heading: string; description: string; image: ImageAsset; primaryAction: HomeAction; secondaryAction: HomeAction };
   capabilityMap: { eyebrow: string; heading: string; items: IconItem[] };
   journey: { eyebrow: string; heading: string; description: string; action: HomeAction; steps: IconItem[] };
-  architecture: { eyebrow: string; heading: string; description: string; image: ImageAsset; modules: PlatformModule[] };
+  architecture: { eyebrow: string; heading: string; description: string; supportingLine: string; modules: PlatformModule[] };
   useCases: { eyebrow: string; heading: string; items: AudienceCard[] };
   physicalBridge: { eyebrow: string; heading: string; description: string; image: ImageAsset; flow: string[] };
   cta: { eyebrow: string; heading: string; description: string; primaryAction: HomeAction; secondaryAction: HomeAction };
@@ -58,13 +58,12 @@ export const platformPageContent: PlatformPageContent = {
     eyebrow: "Platform modules",
     heading: "Everything You Need. All in One Place.",
     description: "Learning & Development, Enterprise Tools, Innovation & Research, Finance & Markets, Community & Network, Impact & Analytics all work together in one platform ecosystem.",
-    image: { src: "/images/platform/platform-ecosystem.jpg", alt: "The FARMCLUB OS ecosystem: Academy, Connect, Entrepreneur and Impact at the centre, surrounded by education partners, learners and participants, mentors and experts, partner farms, experience and innovation hubs and development partners, with the FARMCLUB journey from Learn to Impact and the outcomes it creates." },
-    /** Retained for reference; the section now leads with the ecosystem infographic. */
+    supportingLine: "One connected platform from learning to enterprise growth.",
     modules: [
       { label: "Learn", title: "Learning & Development", description: "Interactive courses, live training and practical resources.", badge: "01", icon: "learn", supports: ["Courses", "Training", "Expert knowledge"] },
-      { label: "Build", title: "Enterprise Management", description: "Business planning, mentorship and enterprise support.", badge: "02", icon: "enterprise", supports: ["Business tools", "Mentorship", "Enterprise support"] },
+      { label: "Build", title: "Enterprise Tools", description: "Business planning, mentorship and enterprise support.", badge: "02", icon: "enterprise", supports: ["Business tools", "Mentorship", "Enterprise support"] },
       { label: "Innovate", title: "Innovation & Research", description: "Ideas, prototypes, research and agricultural technology.", badge: "03", icon: "research", supports: ["Research", "Prototypes", "Technology"] },
-      { label: "Finance", title: "Finance & Market Access", description: "Finance pathways, buyers, suppliers and market opportunities.", badge: "04", icon: "finance", supports: ["Finance readiness", "Buyers", "Markets"] },
+      { label: "Finance", title: "Finance & Markets", description: "Finance pathways, buyers, suppliers and market opportunities.", badge: "04", icon: "finance", supports: ["Finance readiness", "Buyers", "Markets"] },
       { label: "Connect", title: "Community & Network", description: "Entrepreneurs, experts, partners and institutions in one ecosystem.", badge: "05", icon: "connect", supports: ["Community", "Experts", "Partners"] },
       { label: "Impact", title: "Impact & Analytics", description: "Tools for understanding progress, outcomes and contribution.", badge: "06", icon: "impact", supports: ["Progress", "Outcomes", "Insight"] },
     ],
