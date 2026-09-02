@@ -7,7 +7,7 @@ import type { IconName } from "@/components/ui/Icon";
 */
 
 export const siteContact = {
-  email: "hello@farmclubos.org",
+  email: "hello@farmclubos.com",
   phone: "+234 706 823 7616",
   phoneHref: "+2347068237616",
   location: "Lagos State, Nigeria",

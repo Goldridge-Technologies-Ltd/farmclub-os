@@ -65,8 +65,8 @@ export function NewsletterSignup() {
           ) : status === "unavailable" ? (
             <span className="text-farm-gold-400">
               Subscriptions are not connected yet. Email{" "}
-              <a href="mailto:hello@farmclubos.org" className="underline">
-                hello@farmclubos.org
+              <a href="mailto:hello@farmclubos.com" className="underline">
+                hello@farmclubos.com
               </a>{" "}
               to be added to the list.
             </span>

@@ -47,8 +47,8 @@ export const platformPageContent: PlatformPageContent = {
     action: { label: "Start Your Journey", href: "/contact" },
     steps: [
       { title: "Join", description: "Create your profile and tell us about your goals.", icon: "join" },
-      { title: "Learn", description: "Access different courses, tools and resources to sharpen your skills, and train you in using managed spaces in agricultural enterprise.", icon: "book" },
-      { title: "Build", description: "Develop your skills and build capacity that will help you to understand the use of technology in greenhouse farming, validate ideas and build an enterprise.", icon: "build" },
+      { title: "Learn", description: "Select your learning preferences. Explore the tools and training programs available.", icon: "book" },
+      { title: "Build", description: "Develop your skills and build capacity. Explore the different options in protected space farming, and how technology makes a difference.", icon: "build" },
       { title: "Connect", description: "Join networks and connect with experts and partners.", icon: "connect" },
       { title: "Market", description: "Connect to markets, buyers and expand your reach.", icon: "market" },
       { title: "Grow", description: "Receive mentorship, business support and resources.", icon: "grow" },

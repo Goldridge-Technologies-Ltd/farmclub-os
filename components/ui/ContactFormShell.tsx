@@ -266,7 +266,7 @@ function FormStatusMessage({
         Your enquiry is complete.
       </p>
       <p className="mt-1 text-xs leading-6 text-farm-green-900">
-        Nothing was sent or stored. Email hello@farmclubos.org to reach the team
+        Nothing was sent or stored. Email hello@farmclubos.com to reach the team
         while online delivery is being connected.
       </p>
     </div>
