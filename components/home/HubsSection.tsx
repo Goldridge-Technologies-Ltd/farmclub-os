@@ -17,7 +17,7 @@ export function HubsSection({ content }: HubsSectionProps) {
   return (
     <section className="bg-white py-6">
       <div className="site-container">
-        <div className="grid gap-10 rounded-band bg-farm-green-950 px-6 py-12 text-white sm:px-10 sm:py-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-12">
+        <div className="grid gap-10 rounded-band bg-farm-green-950 px-6 py-12 text-white sm:px-10 sm:py-14 lg:grid-cols-[0.58fr_1.42fr] lg:items-center lg:gap-12">
           <div className="max-w-sm">
             <SectionLabel tone="dark">{content.eyebrow}</SectionLabel>
             <h2 className="mt-3 text-[1.8rem] leading-[1.15] sm:text-[2.15rem]">
@@ -37,19 +37,31 @@ export function HubsSection({ content }: HubsSectionProps) {
           </div>
 
           <div className="grid gap-8 sm:grid-cols-[1.15fr_0.85fr] sm:items-center">
-            <figure className="relative aspect-[4/3.1] overflow-hidden rounded-card">
-              <Image
-                src={content.image.src}
-                alt={content.image.alt}
-                fill
-                sizes="(min-width: 1024px) 34vw, 100vw"
-                className="object-cover"
-              />
-              <figcaption className="absolute bottom-3 left-3 max-w-[78%] rounded-card bg-farm-green-950/92 p-3.5 backdrop-blur-sm">
-                <p className="text-[0.78rem] font-semibold text-white">
+            <figure className="flex flex-col">
+              {/*
+                The supplied hub artwork is a dense, info-rich banner (branding,
+                badges, dashboard, feature strip) rather than a plain photo, so it
+                is shown in full at its native ratio via object-contain instead of
+                being centre-cropped. It can exceed the column on the sm-lg split
+                layout, where overflow-x-auto keeps the embedded text legible
+                instead of shrinking it further.
+              */}
+              <div className="overflow-x-auto rounded-card">
+                <div className="relative aspect-[1672/941] w-full min-w-[420px] overflow-hidden rounded-card bg-white">
+                  <Image
+                    src={content.image.src}
+                    alt={content.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 41vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-4 border-t border-white/10 pt-4">
+                <p className="text-sm font-semibold text-white">
                   {content.imageCaption.title}
                 </p>
-                <p className="mt-1 text-[0.7rem] leading-4 text-white/70">
+                <p className="mt-1 text-xs leading-5 text-white/70">
                   {content.imageCaption.description}
                 </p>
                 <ButtonLink

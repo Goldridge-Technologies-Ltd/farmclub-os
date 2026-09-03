@@ -199,8 +199,8 @@ export const homePageContent: HomePageContent = {
       "Our physical hubs bring technology, training and smart agriculture solutions closer to communities.",
     action: { label: "Explore Our Hubs", href: "/hubs" },
     image: {
-      src: "/images/home/experience-innovation-hub.jpg",
-      alt: "Learners receiving practical hydroponics and aquaponics training in an Experience and Innovation Hub.",
+      src: "/images/home/experience-innovation-hub.png",
+      alt: "FARMCLUB OS Experience & Innovation Hub overview: the Lagos Training Hub's hydroponics and aquaponics learning lab, showing a facilitator and learners at a crop health dashboard beside the nutrient system.",
     },
     imageCaption: {
       title: "The Experience & Innovation Hub",

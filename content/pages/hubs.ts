@@ -14,7 +14,7 @@ export const hubsPageContent: HubsPageContent = {
     heading: "Experience & Innovation Hub",
     statement: "Where Innovation Meets Impact.",
     description: "We systematically develop people who can understand agricultural opportunities, use technology appropriately, demonstrate practical competence and build viable enterprises.",
-    image: { src: "/images/hubs/hubs-hero-authentic.jpg", alt: "Participants learning and collaborating in a FARMCLUB OS greenhouse environment." },
+    image: { src: "/images/hubs/hubs-hero-innovation-greenhouse.png", alt: "People learning and collaborating around agricultural technology in a greenhouse." },
     primaryAction: { label: "Explore the Hub", href: "#capabilities" },
     secondaryAction: { label: "Book a Visit", href: "/contact" },
   },

@@ -13,7 +13,7 @@ export type PlatformPageContent = {
   hero: { eyebrow: string; heading: string; description: string; image: ImageAsset; primaryAction: HomeAction; secondaryAction: HomeAction };
   capabilityMap: { eyebrow: string; heading: string; items: IconItem[] };
   journey: { eyebrow: string; heading: string; description: string; action: HomeAction; steps: IconItem[] };
-  architecture: { eyebrow: string; heading: string; description: string; supportingLine: string; modules: PlatformModule[] };
+  architecture: { eyebrow: string; heading: string; description: string; image: ImageAsset; supportingLine: string; modules: PlatformModule[] };
   useCases: { eyebrow: string; heading: string; items: AudienceCard[] };
   physicalBridge: { eyebrow: string; heading: string; description: string; image: ImageAsset; flow: string[] };
   cta: { eyebrow: string; heading: string; description: string; primaryAction: HomeAction; secondaryAction: HomeAction };
@@ -58,6 +58,10 @@ export const platformPageContent: PlatformPageContent = {
     eyebrow: "Platform modules",
     heading: "Everything You Need. All in One Place.",
     description: "Learning & Development, Enterprise Tools, Innovation & Research, Finance & Markets, Community & Network, Impact & Analytics all work together in one platform ecosystem.",
+    image: {
+      src: "/images/platform/platform-ecosystem-infographic.png",
+      alt: "FARMCLUB OS ecosystem connecting education partners, learners, mentors, farms, innovation hubs and development partners through the digital platform: the Academy, Connect, Entrepreneur and Impact modules at the centre, the Learn-Experience-Intern-Enterprise-Market-Impact journey, and the outcomes the ecosystem creates.",
+    },
     supportingLine: "One connected platform from learning to enterprise growth.",
     modules: [
       { label: "Learn", title: "Learning & Development", description: "Interactive courses, live training and practical resources.", badge: "01", icon: "learn", supports: ["Courses", "Training", "Expert knowledge"] },

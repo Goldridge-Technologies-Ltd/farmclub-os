@@ -151,13 +151,24 @@ export default function AboutPage() {
       {/* Journey note */}
       <section className="bg-white pt-14">
         <div className="site-container">
-          <div className="rounded-panel border border-farm-border bg-farm-cream-50 p-7 sm:p-10 lg:grid lg:grid-cols-[0.4fr_1fr] lg:items-center lg:gap-10">
-            <SectionLabel>{content.stewardship.eyebrow}</SectionLabel>
-            <div className="mt-4 lg:mt-0">
-              <h2 className="text-[1.4rem] leading-snug text-farm-green-950 sm:text-[1.7rem]">
+          <div className="rounded-panel border border-farm-border bg-farm-cream-50 p-7 text-center sm:p-10 lg:grid lg:grid-cols-[0.4fr_1fr] lg:items-center lg:gap-10 lg:text-left">
+            <div className="lg:flex lg:flex-col lg:items-center lg:text-center">
+              <IconDisc name="grow" tone="outline" size="lg" className="mx-auto mb-5" />
+              {/*
+                This eyebrow is rendered larger than the shared SectionLabel
+                default (a moderate step up, not a page heading) so "Our
+                journey" reads as a proper section title; scoped to this card
+                only, not a change to SectionLabel itself.
+              */}
+              <p className="text-sm font-bold tracking-[0.16em] text-farm-gold-600 uppercase sm:text-base">
+                {content.stewardship.eyebrow}
+              </p>
+            </div>
+            <div className="mx-auto mt-4 max-w-2xl lg:mx-0 lg:mt-0 lg:max-w-none">
+              <h2 className="text-[1.5rem] leading-snug text-farm-green-950 sm:text-[1.85rem]">
                 {content.stewardship.heading}
               </h2>
-              <p className="mt-3 text-[0.95rem] leading-7 text-farm-muted">
+              <p className="mt-4 text-[0.95rem] leading-7 text-farm-muted">
                 {content.stewardship.description}
               </p>
             </div>

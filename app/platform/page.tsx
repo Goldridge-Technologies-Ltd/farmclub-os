@@ -5,7 +5,6 @@ import { CtaBand } from "@/components/ui/CtaBand";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
-import { PlatformModulesDiagram } from "@/components/platform/PlatformModulesDiagram";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { StepJourney } from "@/components/ui/StepJourney";
@@ -97,8 +96,27 @@ export default function PlatformPage() {
             description={content.architecture.description}
             align="center"
           />
-          <div className="surface-card mx-auto mt-11 max-w-[42rem] p-6 sm:p-9 lg:max-w-none">
-            <PlatformModulesDiagram modules={content.architecture.modules} />
+          {/*
+            The reference ecosystem infographic is a finished, information-dense
+            asset (title, purpose, structure, journey and outcomes already
+            composed together), so it's shown as-is at its native ratio via
+            object-contain rather than rebuilt from the modules data as cards or
+            a generated diagram. Capped narrower than the full site-container so
+            it reads as a contained graphic rather than an edge-to-edge banner;
+            below that cap it scales fluidly with the viewport (no forced
+            min-width) so nothing needs to scroll on mobile. Displaying it under
+            its native 1536px width keeps it sharp rather than upscaled.
+          */}
+          <div className="mx-auto mt-11 max-w-4xl">
+            <div className="surface-card relative aspect-[1536/1024] w-full overflow-hidden bg-white p-3 sm:p-4">
+              <Image
+                src={content.architecture.image.src}
+                alt={content.architecture.image.alt}
+                fill
+                sizes="(min-width: 960px) 896px, 100vw"
+                className="object-contain"
+              />
+            </div>
           </div>
           <p className="mt-7 text-center text-sm text-farm-muted">
             {content.architecture.supportingLine}
