@@ -35,8 +35,8 @@ export const contactPageContent: ContactPageContent = {
     ],
   },
   form: {
-    privacyNote: "Do not include confidential, financial, identity or other sensitive information in this interim form.",
-    integrationNote: "Online delivery is not connected yet. Reviewing the form only checks that your message is complete on this device.",
+    privacyNote: "Do not include confidential, financial, identity or other sensitive information in this form.",
+    integrationNote: "Fields marked with an asterisk are required.",
   },
   /*
     Answers are drawn from the About and Platform pages so the FAQ never states
@@ -57,7 +57,7 @@ export const contactPageContent: ContactPageContent = {
     },
     {
       question: "How do I stay updated on FARMCLUB OS?",
-      answer: "Email the team to be added to the mailing list. Newsletter delivery is not connected on the website yet, so email is the reliable route until it is.",
+      answer: "Subscribe using the newsletter field in the site footer, or email the team to be added to the mailing list directly.",
     },
   ],
   partnership: {

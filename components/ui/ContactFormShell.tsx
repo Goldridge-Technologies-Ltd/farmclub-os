@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Icon } from "@/components/ui/Icon";
 
@@ -17,30 +17,35 @@ type FieldName =
   | "message"
   | "consent";
 type FormErrors = Partial<Record<FieldName, string>>;
-type FormStatus = "idle" | "reviewing" | "invalid" | "reviewed";
+type FormStatus = "idle" | "submitting" | "invalid" | "success" | "error";
 
-/*
-  Presentation only has changed here. There is still no delivery integration
-  (see docs/project-brief.md), so the form validates on the device and says so
-  plainly rather than implying a message was sent.
-*/
 const fieldClass =
   "min-h-12 w-full rounded-button border border-farm-border-strong bg-white px-3.5 text-sm text-farm-charcoal placeholder:text-farm-muted focus:border-farm-green-700 focus:outline-none";
 
 export function ContactFormShell({
   enquiryTypes,
-  integrationNote = "Online delivery is not connected yet. Nothing entered here will be sent or stored.",
+  integrationNote = "Fields marked with an asterisk are required.",
 }: ContactFormShellProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const statusRef = useRef<HTMLDivElement>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    if (status === "idle") return;
+    statusRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [status]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "submitting") return;
+
     const form = event.currentTarget;
     const data = new FormData(form);
     const nextErrors: FormErrors = {};
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
+    const organisation = String(data.get("organisation") ?? "").trim();
     const enquiryType = String(data.get("enquiryType") ?? "");
     const message = String(data.get("message") ?? "").trim();
 
@@ -52,8 +57,7 @@ export function ContactFormShell({
       nextErrors.message =
         "Add at least 20 characters so the enquiry has enough context.";
     if (data.get("consent") !== "on")
-      nextErrors.consent =
-        "Confirm that you understand this interim form does not transmit data.";
+      nextErrors.consent = "Confirm that you consent to being contacted about this enquiry.";
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
@@ -61,14 +65,45 @@ export function ContactFormShell({
       return;
     }
 
-    setStatus("reviewing");
-    window.setTimeout(() => setStatus("reviewed"), 350);
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          organisation: organisation || undefined,
+          enquiryType,
+        }),
+      });
+
+      if (!response.ok) {
+        setErrorMessage(
+          response.status === 429
+            ? "You've sent several messages recently. Please wait a while before trying again."
+            : "We could not send your message. Please try again, or email hello@farmclubos.com directly.",
+        );
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setStatus("success");
+    } catch {
+      setErrorMessage(
+        "We could not send your message. Please try again, or email hello@farmclubos.com directly.",
+      );
+      setStatus("error");
+    }
   }
 
   return (
     <form
       className="rounded-panel border border-farm-border bg-white p-6 sm:p-8"
-      aria-label="Prepare a contact enquiry"
+      aria-label="Send a contact enquiry"
       noValidate
       onSubmit={handleSubmit}
     >
@@ -78,7 +113,13 @@ export function ContactFormShell({
       </p>
 
       <div className="mt-6 grid gap-4">
-        <FormStatusMessage status={status} integrationNote={integrationNote} />
+        <div ref={statusRef} className="scroll-mt-28">
+          <FormStatusMessage
+            status={status}
+            integrationNote={integrationNote}
+            errorMessage={errorMessage}
+          />
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Full name" name="name" error={errors.name} required>
@@ -161,8 +202,8 @@ export function ContactFormShell({
               aria-describedby={errors.consent ? "consent-error" : undefined}
             />
             <span>
-              I understand that this interim form validates my message on this
-              device but does not send or store it.
+              I consent to FARMCLUB OS contacting me about this enquiry using
+              the details provided above.
             </span>
           </label>
           {errors.consent ? (
@@ -178,10 +219,10 @@ export function ContactFormShell({
 
         <button
           type="submit"
-          disabled={status === "reviewing"}
+          disabled={status === "submitting"}
           className="group inline-flex min-h-12 w-fit items-center justify-center gap-2.5 rounded-button bg-farm-green-800 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-farm-green-900 disabled:cursor-wait disabled:opacity-70"
         >
-          {status === "reviewing" ? "Checking…" : "Review Message"}
+          {status === "submitting" ? "Sending…" : "Send Message"}
           <Icon
             name="arrow-right"
             size={18}
@@ -229,9 +270,11 @@ function Field({
 function FormStatusMessage({
   status,
   integrationNote,
+  errorMessage,
 }: {
   status: FormStatus;
   integrationNote: string;
+  errorMessage: string | null;
 }) {
   if (status === "idle")
     return (
@@ -245,16 +288,26 @@ function FormStatusMessage({
         className="rounded-button border border-red-300 bg-red-50 p-3.5 text-sm font-semibold text-red-800"
         role="alert"
       >
-        Review the highlighted fields. Nothing has been sent.
+        Review the highlighted fields and try again.
       </p>
     );
-  if (status === "reviewing")
+  if (status === "submitting")
     return (
       <p
         className="rounded-button border border-farm-border bg-farm-cream-50 p-3.5 text-sm font-semibold text-farm-green-950"
         role="status"
       >
-        Checking your message locally…
+        Sending your message…
+      </p>
+    );
+  if (status === "error")
+    return (
+      <p
+        className="rounded-button border border-red-300 bg-red-50 p-3.5 text-sm font-semibold text-red-800"
+        role="alert"
+      >
+        {errorMessage ??
+          "We could not send your message. Please try again, or email hello@farmclubos.com directly."}
       </p>
     );
   return (
@@ -263,11 +316,10 @@ function FormStatusMessage({
       role="status"
     >
       <p className="text-sm font-semibold text-farm-green-950">
-        Your enquiry is complete.
+        Your message has been sent.
       </p>
       <p className="mt-1 text-xs leading-6 text-farm-green-900">
-        Nothing was sent or stored. Email hello@farmclubos.com to reach the team
-        while online delivery is being connected.
+        Thank you for reaching out. Our team will get back to you soon.
       </p>
     </div>
   );
