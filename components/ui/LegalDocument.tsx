@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import type { PrivacyBlock, PrivacyPolicyContent } from "@/content/pages/privacy-policy";
+import type { LegalBlock, LegalDocumentContent } from "@/content/pages/legal";
 
 function renderInlineText(text: string): ReactNode[] {
   return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
@@ -12,7 +12,7 @@ function renderInlineText(text: string): ReactNode[] {
   );
 }
 
-function Block({ block }: { block: PrivacyBlock }) {
+function Block({ block }: { block: LegalBlock }) {
   switch (block.kind) {
     case "paragraph":
       return (
@@ -55,7 +55,7 @@ function Block({ block }: { block: PrivacyBlock }) {
   }
 }
 
-export function LegalDocument({ content }: { content: PrivacyPolicyContent }) {
+export function LegalDocument({ content }: { content: LegalDocumentContent }) {
   return (
     <div className="bg-white">
       <div className="site-container max-w-3xl py-16">

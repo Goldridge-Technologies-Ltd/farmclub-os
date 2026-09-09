@@ -42,12 +42,17 @@ export function HubsSection({ content }: HubsSectionProps) {
                 The supplied hub artwork is a dense, info-rich banner (branding,
                 badges, dashboard, feature strip) rather than a plain photo, so it
                 is shown in full at its native ratio via object-contain instead of
-                being centre-cropped. It can exceed the column on the sm-lg split
-                layout, where overflow-x-auto keeps the embedded text legible
-                instead of shrinking it further.
+                being centre-cropped. Below sm it sits in a single-column stack
+                with the full section width available, so it scales fluidly
+                (w-full, no min-width) to fit the viewport with no cropping or
+                horizontal scroll. From sm up, the inner grid splits into two
+                columns and that column can get narrower than the banner's
+                embedded text stays legible at, so a 420px floor on that column
+                plus horizontal scrolling takes over there instead of shrinking
+                the banner further.
               */}
               <div className="overflow-x-auto rounded-card">
-                <div className="relative aspect-[1672/941] w-full min-w-[420px] overflow-hidden rounded-card bg-white">
+                <div className="relative aspect-[1672/941] w-full overflow-hidden rounded-card bg-white sm:min-w-[420px]">
                   <Image
                     src={content.image.src}
                     alt={content.image.alt}

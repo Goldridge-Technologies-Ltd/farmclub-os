@@ -1,23 +1,6 @@
-export type PrivacyBlock =
-  | { kind: "paragraph"; text: string }
-  | { kind: "subheading"; text: string }
-  | { kind: "list"; items: string[] }
-  | { kind: "labelLine"; label: string; value: string; href?: string };
+import type { LegalDocumentContent } from "@/content/pages/legal";
 
-export type PrivacySection = {
-  heading: string;
-  blocks: PrivacyBlock[];
-};
-
-export type PrivacyPolicyContent = {
-  eyebrow: string;
-  heading: string;
-  lastUpdated: string;
-  intro: string[];
-  sections: PrivacySection[];
-};
-
-export const privacyPolicyContent: PrivacyPolicyContent = {
+export const privacyPolicyContent: LegalDocumentContent = {
   eyebrow: "Legal",
   heading: "Privacy Policy",
   lastUpdated: "September 4, 2026",
